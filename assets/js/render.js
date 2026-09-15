@@ -40,7 +40,7 @@ function render(list) {
     what.append(title);
     what.append(el('span', 'session__meta', `${course.hours} timmar, ${session.time.toLowerCase()}`));
 
-    item.append(when, what, el('div', 'session__price', `${priceFormat.format(course.price)} kr`), action(session));
+    item.append(when, what, el('div', 'session__price', `${priceFormat.format(course.price)}\u00a0kr`), action(session));
     list.append(item);
   }
 }

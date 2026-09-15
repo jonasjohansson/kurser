@@ -74,7 +74,7 @@ h1 {
 .sessions { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ink); }
 .session {
   display: grid;
-  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.2fr) auto auto;
+  grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr) auto auto;
   column-gap: clamp(1rem, 3vw, 2.5rem);
   row-gap: 0.25rem;
   align-items: baseline;
@@ -82,7 +82,7 @@ h1 {
   border-bottom: 1px solid var(--felt);
 }
 .session__when { display: flex; flex-direction: column; }
-.session__date { font-size: clamp(1.35rem, 1.1rem + 1.4vw, 2.1rem); font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; }
+.session__date { font-size: clamp(1.35rem, 1rem + 1.2vw, 1.85rem); font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; }
 .session__year { color: var(--ink-soft); font-size: 0.95rem; margin-top: 0.15rem; }
 .session__what { display: flex; flex-direction: column; }
 .session__course { font-weight: 500; text-decoration: none; }
@@ -111,10 +111,18 @@ h1 {
 .dates__note { margin: 1.25rem 0 0; color: var(--ink-soft); font-size: 0.95rem; max-width: var(--measure); }
 
 @media (max-width: 40rem) {
-  .session { grid-template-columns: 1fr auto; grid-template-areas: "when price" "what action"; row-gap: 0.75rem; align-items: start; }
-  .session__when { grid-area: when; }
-  .session__price { grid-area: price; padding-top: 0.35rem; }
-  .session__what { grid-area: what; align-self: center; }
+  .session {
+    grid-template-columns: 1fr auto;
+    grid-template-areas: "when when" "what what" "price action";
+    row-gap: 0.5rem;
+    align-items: center;
+    padding: 1.1rem 0;
+  }
+  .session__when { grid-area: when; flex-direction: row; align-items: baseline; gap: 0.5rem; }
+  .session__date { font-size: 1.35rem; }
+  .session__year { margin-top: 0; }
+  .session__what { grid-area: what; }
+  .session__price { grid-area: price; }
   .session > .btn { grid-area: action; justify-self: end; }
 }
 
