@@ -2,12 +2,12 @@
 <html lang="sv">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Kurser · Tuftning och tovning på Klättermusens Verkstad</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Kurser · Tuftning och bastumössa på Klättermusens Verkstad</title>
     <meta name="description" content="Handtuftning 14–15 november 2026 och tovning av bastumössor 30–31 januari 2027 på Klättermusens Verkstad, Nytorgsgatan 36, Stockholm. Sex platser per tillfälle, allt material ingår.">
     <link rel="canonical" href="https://kurser.jonasjohansson.se/">
     <meta property="og:site_name" content="Kurser">
-    <meta property="og:title" content="Tuftning och tovning på Klättermusens Verkstad">
+    <meta property="og:title" content="Tuftning och bastumössa på Klättermusens Verkstad">
     <meta property="og:description" content="Handtuftning 14–15 november 2026 och tovning 30–31 januari 2027. Sex platser per tillfälle, allt material ingår.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://kurser.jonasjohansson.se/">
@@ -18,29 +18,25 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600&display=swap">
-    <link rel="stylesheet" href="/assets/css/main.css?v=2">
-    <script type="module" src="/assets/js/render.js?v=2"></script>
+    <link rel="stylesheet" href="/assets/css/main.css?v=3">
+    <script>document.documentElement.classList.add('js');</script>
+    <script type="module" src="/assets/js/render.js?v=3"></script>
   </head>
   <body>
-    <a class="skip-link" href="#tuftning">Till kurserna</a>
-
-    <header class="site-header">
-      <span class="wordmark">Kurser</span>
-      <nav aria-label="Kurser">
-        <a href="#tuftning">Tuftning</a>
-        <a href="#tovning">Tovning</a>
-      </nav>
+    <header class="tabs" role="tablist" aria-label="Kurser">
+      <a class="tab" role="tab" id="tab-tuftning" href="#tuftning" aria-controls="tuftning" aria-selected="true">Tuftning</a>
+      <a class="tab" role="tab" id="tab-bastumossa" href="#bastumossa" aria-controls="bastumossa" aria-selected="false">Bastumössa</a>
     </header>
 
     <main>
-      <article class="course" id="tuftning" aria-labelledby="tuftning-rubrik">
-        <figure class="course__media">
+      <section class="panel is-active" id="tuftning" role="tabpanel" aria-labelledby="tab-tuftning">
+        <figure class="panel__media">
           <img src="/assets/images/tuftning-1400.jpg" srcset="/assets/images/tuftning-800.jpg 800w, /assets/images/tuftning-1400.jpg 1400w" sizes="(min-width: 60rem) 50vw, 100vw" width="1400" height="1400" alt="En deltagare tuftar för hand i en färgstark väv med blommor, ansikten och mönster." fetchpriority="high" decoding="async">
         </figure>
-        <div class="course__buy">
-          <h1 id="tuftning-rubrik">Tuftning</h1>
-          <p class="course__lead">Handtuftade patches. Fyra timmar, sex deltagare, allt material ingår.</p>
-          <p class="course__price" data-price="tuftning"></p>
+        <div class="panel__body">
+          <h1>Tuftning</h1>
+          <p class="lead">Handtuftade patches. Fyra timmar, sex deltagare, allt material ingår.</p>
+          <p class="price" data-price="tuftning"></p>
           <ol class="sessions" data-sessions="tuftning"></ol>
           <noscript>
             <ul class="sessions">
@@ -48,25 +44,18 @@
               <li class="session">Söndag 15 november 2026. 2 000 kr. Boka via j@jonasjohansson.se.</li>
             </ul>
           </noscript>
-          <p class="course__note">Sex platser per dag. Platsen är din när betalningen gått igenom. Företag som vill betala mot faktura mejlar <a href="mailto:j@jonasjohansson.se">j@jonasjohansson.se</a>.</p>
+          <div class="text">
+            <p>Vi tuftar för hand, utan elektriska maskiner. Ramen och väven är förberedda när du kommer. Du väljer garn, skissar och tuftar så många patches du hinner. Mot slutet limmar vi baksidorna. De torkar över natten och hämtas i verkstaden dagen efter, färdiga att sy fast på kläder och väskor eller använda som sittdynor. Inga förkunskaper behövs. Kursledare Jonas Johansson.</p>
+            <p>Klättermusens Verkstad, Nytorgsgatan 36, Stockholm. Starttid meddelas i bekräftelsen. Kortbetalning vid bokning, kvitto på e-post. Full återbetalning fram till sju dagar före kursen, därefter kan platsen överlåtas. Företag kan betala mot faktura: <a href="mailto:j@jonasjohansson.se">j@jonasjohansson.se</a>.</p>
+          </div>
         </div>
-        <div class="course__text">
-          <h2>Så går det till</h2>
-          <p>Vi tuftar för hand, utan elektriska maskiner. En ram, en spänd väv och en handtuftare som du trycker garnet igenom, stygn för stygn. Ramen och väven är förberedda när du kommer. Du väljer garn, skissar och tuftar så många patches du hinner på fyra timmar. Mot slutet limmar vi baksidorna. Limmet torkar över natten, så du hämtar dina patches i verkstaden dagen efter.</p>
-          <h2>Det här får du</h2>
-          <p>Ram, väv, garn, handtuftare och lim ingår. Du går hem med de patches du gjort, färdiga att sy fast på jackor, väskor och byxor eller använda som sittdynor. Inga förkunskaper behövs. Kursledare Jonas Johansson.</p>
-          <h2>Plats och tid</h2>
-          <p>Klättermusens Verkstad, Nytorgsgatan 36, Stockholm. Starttid meddelas i bekräftelsen.</p>
-          <h2>Betalning och avbokning</h2>
-          <p>Du betalar med kort när du bokar. Kvitto och praktisk information kommer på e-post direkt. Full återbetalning fram till sju dagar före kursen, därefter kan platsen överlåtas men inte återbetalas. Ställer vi in får du hela beloppet tillbaka.</p>
-        </div>
-      </article>
+      </section>
 
-      <article class="course" id="tovning" aria-labelledby="tovning-rubrik">
-        <div class="course__buy course__buy--noimage">
-          <h1 id="tovning-rubrik">Tovning</h1>
-          <p class="course__lead">Tova din egen bastumössa. Sex timmar, sex deltagare, allt material ingår.</p>
-          <p class="course__price" data-price="tovning"></p>
+      <section class="panel panel--noimage" id="bastumossa" role="tabpanel" aria-labelledby="tab-bastumossa">
+        <div class="panel__body">
+          <h1>Bastumössa</h1>
+          <p class="lead">Tova din egen bastumössa i ull. Sex timmar, sex deltagare, allt material ingår.</p>
+          <p class="price" data-price="tovning"></p>
           <ol class="sessions" data-sessions="tovning"></ol>
           <noscript>
             <ul class="sessions">
@@ -74,23 +63,12 @@
               <li class="session">Söndag 31 januari 2027. 3 000 kr. Boka via j@jonasjohansson.se.</li>
             </ul>
           </noscript>
-          <p class="course__note">Sex platser per dag. Platsen är din när betalningen gått igenom. Företag som vill betala mot faktura mejlar <a href="mailto:j@jonasjohansson.se">j@jonasjohansson.se</a>.</p>
+          <div class="text">
+            <p>Rose Hallgren leder dig steg för steg: lägga ut ullen, blöta, tvåla, rulla, tova och forma, tills du håller en färdig mössa som bara finns i ett exemplar. Ull, varmt vatten och tvål är det som används, inga vassa verktyg och inga kemikalier. Du tar med dig mössan hem samma dag. Inga förkunskaper behövs. Rose är arkitekt och ullexpert och driver <a href="https://rosehallgren.se" rel="noopener">Fluffy Encounters</a>.</p>
+            <p>Klättermusens Verkstad, Nytorgsgatan 36, Stockholm. Starttid meddelas i bekräftelsen. Kortbetalning vid bokning, kvitto på e-post. Full återbetalning fram till sju dagar före kursen, därefter kan platsen överlåtas. Företag kan betala mot faktura: <a href="mailto:j@jonasjohansson.se">j@jonasjohansson.se</a>.</p>
+          </div>
         </div>
-        <div class="course__text">
-          <h2>Så går det till</h2>
-          <p>Du tovar en bastumössa i ull, den sort man har på sig i bastun för att skydda huvudet mot värmen. Rose Hallgren leder dig steg för steg: lägga ut ullen, blöta, tvåla, rulla, tova och forma, tills du håller en färdig mössa som bara finns i ett exemplar. Ull, varmt vatten och tvål är det som används. Inga vassa verktyg, inga kemikalier.</p>
-          <h2>Det här får du</h2>
-          <p>All ull, alla verktyg och allt material ingår. Du tar med dig mössan hem samma dag. Inga förkunskaper behövs. Kursledare Rose Hallgren, arkitekt och ullexpert, driver <a href="https://rosehallgren.se" rel="noopener">Fluffy Encounters</a>, ett projekt om ull som lokalt och cirkulärt material, visat på Copenhagen Architecture Biennial 2025.</p>
-          <h2>Plats och tid</h2>
-          <p>Klättermusens Verkstad, Nytorgsgatan 36, Stockholm. Starttid meddelas i bekräftelsen.</p>
-          <h2>Betalning och avbokning</h2>
-          <p>Du betalar med kort när du bokar. Kvitto och praktisk information kommer på e-post direkt. Full återbetalning fram till sju dagar före kursen, därefter kan platsen överlåtas men inte återbetalas. Ställer vi in får du hela beloppet tillbaka.</p>
-        </div>
-      </article>
+      </section>
     </main>
-
-    <footer class="site-footer">
-      <p>Frågor: <a href="mailto:j@jonasjohansson.se">j@jonasjohansson.se</a>. Kurserna hålls hos <a href="https://instagram.com/klattermusens.verkstad" rel="noopener">Klättermusens Verkstad</a>.</p>
-    </footer>
   </body>
 </html>

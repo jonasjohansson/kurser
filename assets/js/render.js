@@ -1,11 +1,8 @@
-import { courses, sessions, exVat } from './sessions.js?v=2';
+import { courses, sessions, exVat } from './sessions.js?v=3';
 
 const dateFormat = new Intl.DateTimeFormat('sv-SE', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
 const kr = (n) => `${new Intl.NumberFormat('sv-SE').format(n)} kr`;
-
-function capitalize(text) {
-  return text.charAt(0).toUpperCase() + text.slice(1);
-}
+const capitalize = (t) => t.charAt(0).toUpperCase() + t.slice(1);
 
 function el(tag, className, text) {
   const node = document.createElement(tag);
@@ -39,4 +36,25 @@ for (const list of document.querySelectorAll('[data-sessions]')) {
     item.append(when, action(session));
     list.append(item);
   }
+}
+
+// Tabs: the URL hash decides which panel is shown.
+const panels = [...document.querySelectorAll('.panel')];
+const tabs = [...document.querySelectorAll('.tab')];
+
+function show(id) {
+  const target = panels.some((p) => p.id === id) ? id : panels[0].id;
+  for (const p of panels) p.classList.toggle('is-active', p.id === target);
+  for (const t of tabs) t.setAttribute('aria-selected', String(t.getAttribute('href') === `#${target}`));
+  document.title = `${document.getElementById(target).querySelector('h1').textContent} · Kurser`;
+}
+
+show(location.hash.slice(1));
+window.addEventListener('hashchange', () => show(location.hash.slice(1)));
+for (const t of tabs) {
+  t.addEventListener('click', (e) => {
+    e.preventDefault();
+    history.replaceState(null, '', t.getAttribute('href'));
+    show(t.getAttribute('href').slice(1));
+  });
 }
