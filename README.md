@@ -1,8 +1,12 @@
 # kurser.jonasjohansson.se
 
-One-page booking site for hands-on courses at Klättermusens Verkstad,
-Nytorgsgatan 36, Stockholm. Static HTML, no build step. Booking and payment
+Single-screen booking site for hands-on courses at Klättermusens Verkstad,
+Nytorgsgatan 36, Stockholm. Two tabs (Tuftning, Bastumössa), no page scroll,
+black on white, Helvetica Neue. Static HTML, no build step. Booking and payment
 happen on Stripe through one Payment Link per session; the site only links out.
+
+The tab is chosen by the URL hash: `/#tuftning` and `/#bastumossa` deep-link.
+Without JavaScript both panels show stacked.
 
 Design: `docs/plans/2026-09-15-kurser-booking-site-design.md`.
 
@@ -10,7 +14,9 @@ Design: `docs/plans/2026-09-15-kurser-booking-site-design.md`.
 
 - `index.html` – the page (Swedish).
 - `assets/js/sessions.js` – **the only file you edit day to day**: dates, times, prices, Stripe URLs, sold-out flags.
-- `assets/js/render.js` – renders the session rows from `sessions.js`.
+- `assets/js/render.js` – renders prices and session rows from `sessions.js`, and switches tabs.
+- Asset links carry `?v=N`; bump N in `index.html` (and the import in `render.js`) when CSS or JS change, or browsers keep the old file for a while.
+- `assets/images/` – tufting photo (from Tufting Ex Machina, 800 and 1400 px) and the OG image. The Bastumössa tab has no photo yet; add one and copy the `<figure>` from the tufting panel.
 - `assets/css/main.css` – styles.
 - `tests/sessions.test.js` – checks `sessions.js` is consistent.
 
@@ -48,7 +54,9 @@ Skip Klarna: it costs more and is not needed for 2 000–3 000 kr.
    - `Tovning, lördag 30 januari 2027` – 3 000 kr.
    - `Tovning, söndag 31 januari 2027` – 3 000 kr.
    Put the start time and the address in each product description; it shows on
-   the checkout page and receipt.
+   the checkout page and receipt. The site shows the price both incl. and excl.
+   moms; Stripe charges the incl. price. Companies that want an invoice email
+   Jonas and are invoiced from Bokio instead.
 4. **Payment Links.** Payment Links → New, one per product:
    - Quantity: do not let customers adjust quantity (one spot per payment keeps
      the cap honest). If friends book together they pay twice.
