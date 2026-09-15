@@ -6,7 +6,13 @@ black on white, Helvetica Neue. Static HTML, no build step. Booking and payment
 happen on Stripe through one Payment Link per session; the site only links out.
 
 The tab is chosen by the URL hash: `/#tuftning` and `/#bastumossa` deep-link.
-Without JavaScript both panels show stacked.
+Without JavaScript both panels show stacked, in Swedish.
+
+Swedish and English both live in `index.html`, as sibling elements marked
+`lang="sv"` and `lang="en"`. The EN/SV button at the right of the tab bar
+switches; the choice is remembered in the browser, and a first visit follows the
+browser language. Button labels, prices and date formats come from the `strings`
+object in `render.js`. Edit copy in both languages when you change one.
 
 Design: `docs/plans/2026-09-15-kurser-booking-site-design.md`.
 
