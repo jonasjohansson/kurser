@@ -43,7 +43,10 @@ main { flex: 1; min-height: 0; display: flex; flex-direction: column; }
 html.js .panel:not(.is-active) { display: none; }
 html:not(.js) .panel + .panel { border-top: 1px solid #000; }
 
-.panel__body { flex: 1; min-height: 0; overflow-y: auto; padding: var(--pad); }
+.panel__body {
+  flex: 1; min-height: 0; overflow-y: auto; padding: var(--pad);
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: clamp(2rem, 5vw, 5rem); align-content: start;
+}
 
 h1 { margin: 0; font-size: 1em; font-weight: 600; }
 .lead { margin: 0.25rem 0 0; max-width: 44ch; }
@@ -70,11 +73,16 @@ h1 { margin: 0; font-size: 1em; font-weight: 600; }
 .btn--off { background: #fff; color: #777; border-color: var(--rule-soft); }
 .btn--off:hover { background: #fff; color: #777; }
 
-.leader { margin: 1.25rem 0 0; }
+.leader { margin: 0; }
 .text { margin-top: 0.75rem; }
 .text p { margin: 0 0 0.75rem; }
 .text p:last-child { margin-bottom: 0; }
 
 @media (max-width: 60rem) {
+  .banner { height: 24vh; }
+  .panel__body { grid-template-columns: 1fr; }
+  .info { margin-top: 1.25rem; }
+}
+@media (max-height: 44rem) {
   .banner { height: 26vh; }
 }
