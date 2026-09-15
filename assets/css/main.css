@@ -23,6 +23,10 @@ body {
 a { color: #000; text-underline-offset: 0.15em; }
 :focus-visible { outline: 2px solid #000; outline-offset: 2px; }
 
+/* Banner */
+.banner { margin: 0; flex: none; height: 38vh; min-height: 10rem; border-bottom: 1px solid #000; }
+.banner img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%; }
+
 /* Tabs */
 .tabs { display: flex; border-bottom: 1px solid #000; flex: none; }
 .tab {
@@ -35,18 +39,11 @@ a { color: #000; text-underline-offset: 0.15em; }
 
 /* Panels */
 main { flex: 1; min-height: 0; display: flex; flex-direction: column; }
-.panel {
-  flex: 1; min-height: 0;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-}
+.panel { flex: 1; min-height: 0; display: flex; }
 html.js .panel:not(.is-active) { display: none; }
 html:not(.js) .panel + .panel { border-top: 1px solid #000; }
 
-.panel__media { margin: 0; min-height: 0; border-right: 1px solid #000; }
-.panel__media img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.panel__media--verkstad { object-position: 50% 62%; }
-.panel__body { min-height: 0; overflow-y: auto; padding: var(--pad); display: flex; flex-direction: column; }
+.panel__body { flex: 1; min-height: 0; overflow-y: auto; padding: var(--pad); }
 
 h1 { margin: 0; font-size: 1em; font-weight: 600; }
 .lead { margin: 0.25rem 0 0; max-width: 44ch; }
@@ -78,6 +75,5 @@ h1 { margin: 0; font-size: 1em; font-weight: 600; }
 .text p:last-child { margin-bottom: 0; }
 
 @media (max-width: 60rem) {
-  .panel { grid-template-columns: 1fr; grid-template-rows: minmax(0, 38%) minmax(0, 1fr); }
-  .panel__media { border-right: 0; border-bottom: 1px solid #000; }
+  .banner { height: 26vh; }
 }

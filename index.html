@@ -15,11 +15,14 @@
     <meta property="og:locale" content="sv_SE">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="theme-color" content="#ffffff">
-    <link rel="stylesheet" href="assets/css/main.css?v=9">
+    <link rel="stylesheet" href="assets/css/main.css?v=10">
     <script>document.documentElement.classList.add('js');</script>
     <script type="module" src="assets/js/render.js?v=9"></script>
   </head>
   <body>
+    <figure class="banner">
+      <img src="assets/images/verkstad-1400.jpg" srcset="assets/images/verkstad-800.jpg 800w, assets/images/verkstad-1400.jpg 1400w" sizes="100vw" width="1400" height="1120" alt="Klättermusens Verkstad på Nytorgsgatan 36, en butikslokal i trä och tegel med stora fönster." fetchpriority="high" decoding="async">
+    </figure>
     <header class="tabs" role="tablist" aria-label="Kurser">
       <a class="tab" role="tab" id="tab-tuftning" href="#tuftning" aria-controls="tuftning" aria-selected="true">Tuftning</a>
       <a class="tab" role="tab" id="tab-bastumossa" href="#bastumossa" aria-controls="bastumossa" aria-selected="false">Bastumössa</a>
@@ -27,9 +30,6 @@
 
     <main>
       <section class="panel is-active" id="tuftning" role="tabpanel" aria-labelledby="tab-tuftning">
-        <figure class="panel__media">
-          <img src="assets/images/tuftning-1400.jpg" srcset="assets/images/tuftning-800.jpg 800w, assets/images/tuftning-1400.jpg 1400w" sizes="(min-width: 60rem) 50vw, 100vw" width="1400" height="1400" alt="En deltagare tuftar för hand i en färgstark väv med blommor, ansikten och mönster." fetchpriority="high" decoding="async">
-        </figure>
         <div class="panel__body">
           <h1>Tuftning</h1>
           <p class="lead">Handtuftade patches. Fyra timmar, sex deltagare, allt material ingår.</p>
@@ -49,9 +49,6 @@
       </section>
 
       <section class="panel" id="bastumossa" role="tabpanel" aria-labelledby="tab-bastumossa">
-        <figure class="panel__media">
-          <img class="panel__media--verkstad" src="assets/images/verkstad-1400.jpg" srcset="assets/images/verkstad-800.jpg 800w, assets/images/verkstad-1400.jpg 1400w" sizes="(min-width: 60rem) 50vw, 100vw" width="1400" height="1120" alt="Klättermusens Verkstad på Nytorgsgatan 36, en butikslokal i trä och tegel med stora fönster." decoding="async">
-        </figure>
         <div class="panel__body">
           <h1>Bastumössa</h1>
           <p class="lead">Tova din egen bastumössa i ull. Sex timmar, sex deltagare, allt material ingår.</p>
