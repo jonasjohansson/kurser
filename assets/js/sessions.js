@@ -25,8 +25,8 @@ export const courses = {
 export const sessions = [
   { id: 'tuft-2026-11-14', course: 'tuftning', date: '2026-11-14', time: '12–16', stripeUrl: null, soldOut: false },
   { id: 'tuft-2026-11-15', course: 'tuftning', date: '2026-11-15', time: '12–16', stripeUrl: null, soldOut: false },
-  { id: 'tov-2027-01-30', course: 'tovning', date: '2027-01-30', time: 'Tid meddelas', stripeUrl: null, soldOut: false },
-  { id: 'tov-2027-01-31', course: 'tovning', date: '2027-01-31', time: 'Tid meddelas', stripeUrl: null, soldOut: false },
+  { id: 'tov-2027-01-30', course: 'tovning', date: '2027-01-30', time: '12–18', stripeUrl: null, soldOut: false },
+  { id: 'tov-2027-01-31', course: 'tovning', date: '2027-01-31', time: '12–18', stripeUrl: null, soldOut: false },
 ];
 
 export function exVat(price) {
