@@ -1,4 +1,4 @@
-import { courses, sessions, exVat } from './sessions.js';
+import { courses, sessions, exVat } from './sessions.js?v=2';
 
 const dateFormat = new Intl.DateTimeFormat('sv-SE', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
 const kr = (n) => `${new Intl.NumberFormat('sv-SE').format(n)} kr`;
