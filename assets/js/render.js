@@ -22,7 +22,7 @@ function action(session) {
 
 for (const node of document.querySelectorAll('[data-price]')) {
   const course = courses[node.dataset.price];
-  node.textContent = `${kr(course.price)} inkl. moms, ${kr(exVat(course.price))} exkl. moms.`;
+  node.replaceChildren(kr(course.price), el('span', 'price__vat', ` inkl. moms. Företag: ${kr(exVat(course.price))} exkl. moms mot faktura.`));
 }
 
 for (const list of document.querySelectorAll('[data-sessions]')) {
