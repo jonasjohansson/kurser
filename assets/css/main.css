@@ -14,7 +14,7 @@ body {
   background: #fff;
   color: #000;
   font-family: var(--font);
-  font-size: 1.0625rem;
+  font-size: 0.9375rem;
   line-height: 1.45;
   display: flex;
   flex-direction: column;
@@ -29,13 +29,24 @@ a { color: #000; text-underline-offset: 0.15em; }
 
 /* Tabs */
 .tabs { display: flex; border-bottom: 1px solid #000; flex: none; }
+.tabs__list { display: flex; flex: 1; min-width: 0; }
 .tab {
-  flex: 1; text-align: center; padding: 0.9rem var(--pad);
+  flex: 1; text-align: center; padding: 0.8rem var(--pad);
   text-decoration: none; font-weight: 500; color: #666;
 }
+.tab__dates { font-weight: 400; margin-left: 0.35rem; }
 .tab + .tab { border-left: 1px solid #000; }
 .tab[aria-selected="true"] { color: #000; font-weight: 600; }
 .tab:hover { color: #000; }
+.lang {
+  flex: none; padding: 0.8rem var(--pad); border: 0; border-left: 1px solid #000; background: #fff;
+  font: inherit; font-weight: 500; color: #666; cursor: pointer;
+}
+.lang:hover { color: #000; }
+
+/* Language: both versions are in the HTML; the root data-lang picks one. */
+html.js[data-lang="en"] [lang="sv"], html.js:not([data-lang="en"]) [lang="en"] { display: none; }
+html:not(.js) [lang="en"] { display: none; }
 
 /* Panels */
 main { flex: 1; min-height: 0; display: flex; flex-direction: column; }
@@ -45,8 +56,16 @@ html:not(.js) .panel + .panel { border-top: 1px solid #000; }
 
 .panel__body {
   flex: 1; min-height: 0; overflow-y: auto; padding: var(--pad);
-  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: clamp(2rem, 5vw, 5rem); align-content: start;
+  display: grid; align-content: start;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 0.8fr);
+  grid-template-areas: "buy about practical";
+  column-gap: clamp(2rem, 4vw, 4rem);
 }
+.buy { grid-area: buy; }
+.about { grid-area: about; }
+.practical { grid-area: practical; }
+.about p, .practical p { margin: 0 0 0.75rem; }
+.about p:last-child, .practical p:last-child { margin-bottom: 0; }
 
 h1 { margin: 0; font-size: 1em; font-weight: 600; }
 .lead { margin: 0.25rem 0 0; max-width: 44ch; }
@@ -73,15 +92,13 @@ h1 { margin: 0; font-size: 1em; font-weight: 600; }
 .btn--off { background: #fff; color: #777; border-color: var(--rule-soft); }
 .btn--off:hover { background: #fff; color: #777; }
 
-.leader { margin: 0; }
-.text { margin-top: 0.75rem; }
-.text p { margin: 0 0 0.75rem; }
-.text p:last-child { margin-bottom: 0; }
 
-@media (max-width: 60rem) {
+@media (max-width: 68rem) {
+  .panel__body { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); grid-template-areas: "buy about" "buy practical"; row-gap: 0.75rem; }
+}
+@media (max-width: 44rem) {
   .banner { height: 24vh; }
-  .panel__body { grid-template-columns: 1fr; }
-  .info { margin-top: 1.25rem; }
+  .panel__body { grid-template-columns: 1fr; grid-template-areas: "buy" "about" "practical"; row-gap: 1rem; }
 }
 @media (max-height: 44rem) {
   .banner { height: 26vh; }

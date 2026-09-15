@@ -3,7 +3,31 @@
 const version = new URL(import.meta.url).searchParams.get('v') ?? '0';
 const { courses, sessions, exVat } = await import(`./sessions.js?v=${version}`);
 
-const dateFormat = new Intl.DateTimeFormat('sv-SE', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+const CONTACT = 'j@jonasjohansson.se';
+
+const strings = {
+  sv: {
+    locale: 'sv-SE',
+    book: 'Boka',
+    full: 'Fullbokat',
+    price: (incl, ex) => [`${incl} inkl. moms.`, ` Företag: ${ex} exkl. moms mot faktura.`],
+    subject: (course, date) => `Bokning: ${course} ${date}`,
+    body: (course, date, time) => `Hej!\n\nJag vill boka en plats på ${course}, ${date} ${time}.\n\nNamn:\nTelefon:\n`,
+    siteTitle: 'Kurser',
+    title: { tuftning: 'Tuftning', tovning: 'Bastumössa' },
+  },
+  en: {
+    locale: 'en-GB',
+    book: 'Book',
+    full: 'Fully booked',
+    price: (incl, ex) => [`${incl} incl. VAT.`, ` Companies: ${ex} excl. VAT by invoice.`],
+    subject: (course, date) => `Booking: ${course} ${date}`,
+    body: (course, date, time) => `Hi!\n\nI would like to book a seat on ${course}, ${date} ${time}.\n\nName:\nPhone:\n`,
+    siteTitle: 'Courses',
+    title: { tuftning: 'Tufting', tovning: 'Sauna hat' },
+  },
+};
+
 const kr = (n) => `${new Intl.NumberFormat('sv-SE').format(n)} kr`;
 const capitalize = (t) => t.charAt(0).toUpperCase() + t.slice(1);
 
@@ -14,59 +38,92 @@ function el(tag, className, text) {
   return node;
 }
 
-const CONTACT = 'j@jonasjohansson.se';
-
-// Without a Stripe link the button opens a prefilled email instead.
-function mailto(session, course, dateText) {
-  const subject = `Bokning: ${course.title} ${dateText.toLowerCase()}`;
-  const body = `Hej!\n\nJag vill boka en plats på ${course.title}, ${dateText.toLowerCase()} ${session.time}.\n\nNamn:\nTelefon:\n`;
-  return `mailto:${CONTACT}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+// Language: remembered choice, else browser preference, else Swedish.
+function initialLang() {
+  try {
+    const saved = localStorage.getItem('lang');
+    if (saved === 'sv' || saved === 'en') return saved;
+  } catch {}
+  return (navigator.language || 'sv').toLowerCase().startsWith('sv') ? 'sv' : 'en';
 }
+let lang = initialLang();
 
-function action(session, course, dateText) {
-  if (session.soldOut) return el('span', 'btn btn--off', 'Fullbokat');
-  const link = el('a', 'btn', 'Boka');
-  link.href = session.stripeUrl ?? mailto(session, course, dateText);
+function action(session, courseTitle, dateText, t) {
+  if (session.soldOut) return el('span', 'btn btn--off', t.full);
+  const link = el('a', 'btn', t.book);
+  if (session.stripeUrl) {
+    link.href = session.stripeUrl;
+  } else {
+    const subject = t.subject(courseTitle, dateText.toLowerCase());
+    const body = t.body(courseTitle, dateText.toLowerCase(), session.time);
+    link.href = `mailto:${CONTACT}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  }
   link.rel = 'noopener';
   return link;
 }
 
-for (const node of document.querySelectorAll('[data-price]')) {
-  const course = courses[node.dataset.price];
-  node.replaceChildren(kr(course.price), el('span', 'price__vat', ` inkl. moms. Företag: ${kr(exVat(course.price))} exkl. moms mot faktura.`));
-}
+function render() {
+  const t = strings[lang];
+  document.documentElement.lang = lang;
+  document.documentElement.dataset.lang = lang;
+  const dateFormat = new Intl.DateTimeFormat(t.locale, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
 
-for (const list of document.querySelectorAll('[data-sessions]')) {
-  list.replaceChildren();
-  for (const session of sessions.filter((s) => s.course === list.dataset.sessions)) {
-    const date = new Date(`${session.date}T12:00:00`);
-    const dateText = capitalize(dateFormat.format(date));
-    const item = el('li', 'session' + (session.soldOut ? ' session--full' : ''));
-    const when = el('div', 'session__when');
-    when.append(el('span', 'session__date', dateText));
-    when.append(el('span', 'session__time', session.time));
-    item.append(when, action(session, courses[list.dataset.sessions], dateText));
-    list.append(item);
+  for (const node of document.querySelectorAll('[data-price]')) {
+    const course = courses[node.dataset.price];
+    const [main, note] = t.price(kr(course.price), kr(exVat(course.price)));
+    node.replaceChildren(main, el('span', 'price__vat', note));
   }
+
+  for (const list of document.querySelectorAll('[data-sessions]')) {
+    const courseTitle = t.title[list.dataset.sessions];
+    list.replaceChildren();
+    for (const session of sessions.filter((s) => s.course === list.dataset.sessions)) {
+      const date = new Date(`${session.date}T12:00:00`);
+      const dateText = capitalize(dateFormat.format(date));
+      const item = el('li', 'session' + (session.soldOut ? ' session--full' : ''));
+      const when = el('div', 'session__when');
+      when.append(el('span', 'session__date', dateText));
+      when.append(el('span', 'session__time', session.time));
+      item.append(when, action(session, courseTitle, dateText, t));
+      list.append(item);
+    }
+  }
+  updateTitle();
 }
 
 // Tabs: the URL hash decides which panel is shown.
 const panels = [...document.querySelectorAll('.panel')];
 const tabs = [...document.querySelectorAll('.tab')];
 
-function show(id) {
-  const target = panels.some((p) => p.id === id) ? id : panels[0].id;
-  for (const p of panels) p.classList.toggle('is-active', p.id === target);
-  for (const t of tabs) t.setAttribute('aria-selected', String(t.getAttribute('href') === `#${target}`));
-  document.title = `${document.getElementById(target).querySelector('h1').textContent} · Kurser`;
+function activeId() {
+  const id = location.hash.slice(1);
+  return panels.some((p) => p.id === id) ? id : panels[0].id;
 }
 
-show(location.hash.slice(1));
-window.addEventListener('hashchange', () => show(location.hash.slice(1)));
-for (const t of tabs) {
-  t.addEventListener('click', (e) => {
+function updateTitle() {
+  const key = activeId() === 'tuftning' ? 'tuftning' : 'tovning';
+  document.title = `${strings[lang].title[key]} · ${strings[lang].siteTitle}`;
+}
+
+function show() {
+  const target = activeId();
+  for (const p of panels) p.classList.toggle('is-active', p.id === target);
+  for (const tab of tabs) tab.setAttribute('aria-selected', String(tab.getAttribute('href') === `#${target}`));
+  updateTitle();
+}
+
+render();
+show();
+window.addEventListener('hashchange', show);
+for (const tab of tabs) {
+  tab.addEventListener('click', (e) => {
     e.preventDefault();
-    history.replaceState(null, '', t.getAttribute('href'));
-    show(t.getAttribute('href').slice(1));
+    history.replaceState(null, '', tab.getAttribute('href'));
+    show();
   });
 }
+document.querySelector('[data-lang-toggle]')?.addEventListener('click', () => {
+  lang = lang === 'sv' ? 'en' : 'sv';
+  try { localStorage.setItem('lang', lang); } catch {}
+  render();
+});
