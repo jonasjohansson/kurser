@@ -1,11 +1,13 @@
 // Single source of truth for what can be booked.
 // To mark a session full: set soldOut: true, commit, push.
 // To open booking: paste the Stripe Payment Link into stripeUrl.
+// price is in SEK including 25 % moms; the ex-moms price is derived.
+
+export const VAT = 0.25;
 
 export const courses = {
   tuftning: {
     title: 'Tuftning',
-    subtitle: 'Gör egna patches med handtuftning',
     leader: 'Jonas Johansson',
     hours: 4,
     spots: 6,
@@ -13,7 +15,6 @@ export const courses = {
   },
   tovning: {
     title: 'Tovning',
-    subtitle: 'Tova din egen bastumössa',
     leader: 'Rose Hallgren',
     hours: 6,
     spots: 6,
@@ -27,3 +28,7 @@ export const sessions = [
   { id: 'tov-2027-01-30', course: 'tovning', date: '2027-01-30', time: 'Tid meddelas', stripeUrl: null, soldOut: false },
   { id: 'tov-2027-01-31', course: 'tovning', date: '2027-01-31', time: 'Tid meddelas', stripeUrl: null, soldOut: false },
 ];
+
+export function exVat(price) {
+  return Math.round(price / (1 + VAT));
+}

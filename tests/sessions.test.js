@@ -29,3 +29,11 @@ test('dates match the agreed weekends', () => {
   assert.deepEqual(byCourse('tuftning'), ['2026-11-14', '2026-11-15']);
   assert.deepEqual(byCourse('tovning'), ['2027-01-30', '2027-01-31']);
 });
+
+test('ex-moms prices are whole kronor', async () => {
+  const { exVat, VAT } = await import('../assets/js/sessions.js');
+  assert.equal(VAT, 0.25);
+  assert.equal(exVat(2000), 1600);
+  assert.equal(exVat(3000), 2400);
+  for (const c of Object.values(courses)) assert.equal(exVat(c.price) * (1 + VAT), c.price);
+});

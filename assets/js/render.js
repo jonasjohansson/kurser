@@ -1,7 +1,7 @@
-import { courses, sessions } from './sessions.js';
+import { courses, sessions, exVat } from './sessions.js';
 
-const dateFormat = new Intl.DateTimeFormat('sv-SE', { weekday: 'long', day: 'numeric', month: 'long' });
-const priceFormat = new Intl.NumberFormat('sv-SE');
+const dateFormat = new Intl.DateTimeFormat('sv-SE', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+const kr = (n) => `${new Intl.NumberFormat('sv-SE').format(n)} kr`;
 
 function capitalize(text) {
   return text.charAt(0).toUpperCase() + text.slice(1);
@@ -23,27 +23,20 @@ function action(session) {
   return link;
 }
 
-function render(list) {
+for (const node of document.querySelectorAll('[data-price]')) {
+  const course = courses[node.dataset.price];
+  node.textContent = `${kr(course.price)} inkl. moms, ${kr(exVat(course.price))} exkl. moms.`;
+}
+
+for (const list of document.querySelectorAll('[data-sessions]')) {
   list.replaceChildren();
-  for (const session of sessions) {
-    const course = courses[session.course];
+  for (const session of sessions.filter((s) => s.course === list.dataset.sessions)) {
     const date = new Date(`${session.date}T12:00:00`);
     const item = el('li', 'session' + (session.soldOut ? ' session--full' : ''));
-
     const when = el('div', 'session__when');
     when.append(el('span', 'session__date', capitalize(dateFormat.format(date))));
-    when.append(el('span', 'session__year', String(date.getFullYear())));
-
-    const what = el('div', 'session__what');
-    const title = el('a', 'session__course', course.title);
-    title.href = `#${session.course}`;
-    what.append(title);
-    what.append(el('span', 'session__meta', `${course.hours} timmar, ${session.time.toLowerCase()}`));
-
-    item.append(when, what, el('div', 'session__price', `${priceFormat.format(course.price)}\u00a0kr`), action(session));
+    when.append(el('span', 'session__time', session.time));
+    item.append(when, action(session));
     list.append(item);
   }
 }
-
-const list = document.querySelector('[data-sessions]');
-if (list) render(list);
