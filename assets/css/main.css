@@ -68,7 +68,8 @@ html:not(.js) .panel + .panel { border-top: 1px solid #000; }
 .about p:last-child, .practical p:last-child { margin-bottom: 0; }
 
 h1 { margin: 0; font-size: 1em; font-weight: 600; }
-.lead { margin: 0.25rem 0 0; max-width: 44ch; }
+.visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.lead { margin: 0; max-width: 44ch; }
 .price { margin: 1rem 0 0; font-weight: 500; }
 .price__vat { font-weight: 400; color: #444; }
 
