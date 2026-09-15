@@ -1,4 +1,7 @@
-import { courses, sessions, exVat } from './sessions.js?v=3';
+// sessions.js is loaded with the same ?v= as this file, so bumping the version
+// in index.html refreshes both.
+const version = new URL(import.meta.url).searchParams.get('v') ?? '0';
+const { courses, sessions, exVat } = await import(`./sessions.js?v=${version}`);
 
 const dateFormat = new Intl.DateTimeFormat('sv-SE', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
 const kr = (n) => `${new Intl.NumberFormat('sv-SE').format(n)} kr`;

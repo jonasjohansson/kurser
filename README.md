@@ -15,7 +15,7 @@ Design: `docs/plans/2026-09-15-kurser-booking-site-design.md`.
 - `index.html` – the page (Swedish).
 - `assets/js/sessions.js` – **the only file you edit day to day**: dates, times, prices, Stripe URLs, sold-out flags.
 - `assets/js/render.js` – renders prices and session rows from `sessions.js`, and switches tabs.
-- Asset links carry `?v=N`; bump N in `index.html` (and the import in `render.js`) when CSS or JS change, or browsers keep the old file for a while.
+- Asset links carry `?v=N` in `index.html`. Bump N whenever you change `sessions.js`, `render.js` or the CSS (the data file inherits the script's version), otherwise browsers keep the old file for up to ten minutes.
 - `assets/images/` – tufting photo (from Tufting Ex Machina, 800 and 1400 px) and the OG image. The Bastumössa tab has no photo yet; add one and copy the `<figure>` from the tufting panel.
 - `assets/css/main.css` – styles.
 - `tests/sessions.test.js` – checks `sessions.js` is consistent.
