@@ -14,11 +14,19 @@ function el(tag, className, text) {
   return node;
 }
 
-function action(session) {
+const CONTACT = 'j@jonasjohansson.se';
+
+// Without a Stripe link the button opens a prefilled email instead.
+function mailto(session, course, dateText) {
+  const subject = `Bokning: ${course.title} ${dateText.toLowerCase()}`;
+  const body = `Hej!\n\nJag vill boka en plats på ${course.title}, ${dateText.toLowerCase()} ${session.time}.\n\nNamn:\nTelefon:\n`;
+  return `mailto:${CONTACT}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+function action(session, course, dateText) {
   if (session.soldOut) return el('span', 'btn btn--off', 'Fullbokat');
-  if (!session.stripeUrl) return el('span', 'btn btn--off', 'Öppnar snart');
   const link = el('a', 'btn', 'Boka');
-  link.href = session.stripeUrl;
+  link.href = session.stripeUrl ?? mailto(session, course, dateText);
   link.rel = 'noopener';
   return link;
 }
@@ -32,11 +40,12 @@ for (const list of document.querySelectorAll('[data-sessions]')) {
   list.replaceChildren();
   for (const session of sessions.filter((s) => s.course === list.dataset.sessions)) {
     const date = new Date(`${session.date}T12:00:00`);
+    const dateText = capitalize(dateFormat.format(date));
     const item = el('li', 'session' + (session.soldOut ? ' session--full' : ''));
     const when = el('div', 'session__when');
-    when.append(el('span', 'session__date', capitalize(dateFormat.format(date))));
+    when.append(el('span', 'session__date', dateText));
     when.append(el('span', 'session__time', session.time));
-    item.append(when, action(session));
+    item.append(when, action(session, courses[list.dataset.sessions], dateText));
     list.append(item);
   }
 }
