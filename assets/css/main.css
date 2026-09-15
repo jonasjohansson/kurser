@@ -70,7 +70,8 @@ h1 { margin: 0; font-size: 1em; font-weight: 600; }
 .btn--off { background: #fff; color: #777; border-color: var(--rule-soft); }
 .btn--off:hover { background: #fff; color: #777; }
 
-.text { margin-top: 1.25rem; }
+.leader { margin: 1.25rem 0 0; }
+.text { margin-top: 0.75rem; }
 .text p { margin: 0 0 0.75rem; }
 .text p:last-child { margin-bottom: 0; }
 
