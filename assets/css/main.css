@@ -57,8 +57,8 @@ html:not(.js) .panel + .panel { border-top: 1px solid #000; }
 .panel__body {
   flex: 1; min-height: 0; overflow-y: auto; padding: var(--pad);
   display: grid; align-content: start;
-  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 0.8fr);
-  grid-template-areas: "buy about practical";
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr) minmax(0, 1.3fr);
+  grid-template-areas: "about practical buy";
   column-gap: clamp(2rem, 4vw, 4rem);
 }
 .buy { grid-area: buy; }
@@ -94,7 +94,7 @@ h1 { margin: 0; font-size: 1em; font-weight: 600; }
 
 
 @media (max-width: 68rem) {
-  .panel__body { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); grid-template-areas: "buy about" "buy practical"; row-gap: 0.75rem; }
+  .panel__body { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); grid-template-areas: "about buy" "practical buy"; row-gap: 0.75rem; }
 }
 @media (max-width: 44rem) {
   .banner { height: 24vh; }
