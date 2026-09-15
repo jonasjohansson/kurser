@@ -1,0 +1,10 @@
+{
+  "name": "kurser",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/",
+    "validate": "npx --yes html-validate index.html",
+    "serve": "python3 -m http.server 8080"
+  }
+}
