@@ -45,7 +45,7 @@ a { color: #000; text-underline-offset: 0.15em; }
 .shape { margin: 0 0 1rem; width: 100%; }
 .shape svg, .shape img { display: block; width: 100%; height: auto; }
 .shape--tufting img { height: clamp(5rem, 18vh, 18rem); object-fit: cover; object-position: 50% 60%; }
-.shape--hattifnattar img { height: auto; max-height: clamp(5rem, 13vh, 16rem); object-fit: contain; object-position: left center; }
+.shape--bastumossa img { height: clamp(5rem, 14vh, 16rem); object-fit: cover; object-position: 50% 40%; }
 
 
 /* Panels */
