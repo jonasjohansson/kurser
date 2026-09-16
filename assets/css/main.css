@@ -38,12 +38,6 @@ a { color: #000; text-underline-offset: 0.15em; }
 .tab + .tab { border-left: 1px solid #000; }
 .tab[aria-selected="true"] { color: #000; font-weight: 600; }
 .tab:hover { color: #000; }
-.lang {
-  position: fixed; top: 1rem; right: 1rem; z-index: 5;
-  padding: 0.45rem 0.8rem; border: 1px solid #000; background: #fff;
-  font: inherit; font-weight: 500; color: #000; cursor: pointer;
-}
-.lang:hover { background: #000; color: #fff; }
 
 .panel__body::-webkit-scrollbar { display: none; }
 
@@ -53,10 +47,6 @@ a { color: #000; text-underline-offset: 0.15em; }
 .shape--tufting { width: 100%; }
 .shape--tufting img { height: clamp(7rem, 24vh, 22rem); object-fit: cover; object-position: 50% 60%; }
 
-
-/* Language: both versions are in the HTML; the root data-lang picks one. */
-html.js[data-lang="en"] [lang="sv"], html.js:not([data-lang="en"]) [lang="en"] { display: none; }
-html:not(.js) [lang="en"] { display: none; }
 
 /* Panels */
 main { flex: 1; min-height: 0; display: flex; flex-direction: column; }

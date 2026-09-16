@@ -16,16 +16,6 @@ const strings = {
     siteTitle: 'Kurser',
     title: { tuftning: 'Tuftning', tovning: 'Bastumössa' },
   },
-  en: {
-    locale: 'en-GB',
-    book: 'Book',
-    full: 'Fully booked',
-    price: (incl, ex) => [`${incl} incl. VAT`, `, ${ex} excl. VAT for companies by invoice`],
-    subject: (course, date) => `Booking: ${course} ${date}`,
-    body: (course, date, time) => `Hi!\n\nI would like to book a seat on ${course}, ${date} ${time}.\n\nName:\nPhone:\n`,
-    siteTitle: 'Courses',
-    title: { tuftning: 'Tufting', tovning: 'Sauna hat' },
-  },
 };
 
 const kr = (n) => `${new Intl.NumberFormat('sv-SE').format(n)} kr`;
@@ -38,15 +28,7 @@ function el(tag, className, text) {
   return node;
 }
 
-// Language: remembered choice, else browser preference, else Swedish.
-function initialLang() {
-  try {
-    const saved = localStorage.getItem('lang');
-    if (saved === 'sv' || saved === 'en') return saved;
-  } catch {}
-  return (navigator.language || 'sv').toLowerCase().startsWith('sv') ? 'sv' : 'en';
-}
-let lang = initialLang();
+const lang = 'sv';
 
 function action(session, courseTitle, dateText, t) {
   if (session.soldOut) return el('span', 'btn btn--off', t.full);
@@ -65,8 +47,6 @@ function action(session, courseTitle, dateText, t) {
 
 function render() {
   const t = strings[lang];
-  document.documentElement.lang = lang;
-  document.documentElement.dataset.lang = lang;
   const dateFormat = new Intl.DateTimeFormat(t.locale, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
 
   for (const node of document.querySelectorAll('[data-price]')) {
@@ -123,8 +103,3 @@ for (const tab of tabs) {
     show();
   });
 }
-document.querySelector('[data-lang-toggle]')?.addEventListener('click', () => {
-  lang = lang === 'sv' ? 'en' : 'sv';
-  try { localStorage.setItem('lang', lang); } catch {}
-  render();
-});
