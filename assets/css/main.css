@@ -44,8 +44,8 @@ a { color: #000; text-underline-offset: 0.15em; }
 /* Shaped photos under the dates */
 .shape { margin: 0 0 1rem; width: 100%; }
 .shape svg, .shape img { display: block; width: 100%; height: auto; }
-.shape--tufting img { height: clamp(5rem, 18vh, 18rem); object-fit: cover; object-position: 50% 60%; }
-.shape--bastumossa img { width: auto; max-width: 100%; height: clamp(5rem, 15vh, 16rem); }
+.shape--tufting img { height: clamp(6rem, 30vh, 26rem); object-fit: cover; object-position: 50% 60%; }
+.shape--bastumossa img { width: auto; max-width: 100%; height: auto; max-height: clamp(8rem, 36vh, 30rem); }
 
 
 /* Panels */
@@ -59,11 +59,12 @@ html:not(.js) .panel + .panel { border-top: 1px solid #000; }
   scrollbar-width: none;
   display: grid; align-content: start;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  grid-template-areas: "about buy" "about practical";
+  grid-template-areas: "about buy" "about schedule" "about practical";
   column-gap: calc(2 * var(--pad)); row-gap: 0; align-content: start;
 }
 .buy { grid-area: buy; }
 .about { grid-area: about; }
+.schedule-block { grid-area: schedule; margin-top: 1rem; }
 .practical { grid-area: practical; margin-top: 1rem; }
 .about p, .practical p { margin: 0 0 0.75rem; }
 .about p:last-child, .practical p:last-child { margin-bottom: 0; }
@@ -76,7 +77,7 @@ h1 { margin: 0; font-size: 1em; font-weight: 600; }
 .facts dt { font-weight: 500; }
 .facts dd { margin: 0; color: #444; }
 .facts dd strong { font-weight: 500; color: #000; }
-.schedule { margin: 0 0 0.75rem; }
+.schedule { margin: 0; }
 .schedule dd { color: #000; }
 
 .sessions { list-style: none; margin: 1rem 0 0; padding: 0; border-top: 1px solid #000; }
@@ -102,7 +103,7 @@ h1 { margin: 0; font-size: 1em; font-weight: 600; }
 
 @media (max-width: 44rem) {
   .banner { height: 24vh; }
-  .panel__body { grid-template-columns: 1fr; grid-template-areas: "buy" "about" "practical"; row-gap: 1rem; }
+  .panel__body { grid-template-columns: 1fr; grid-template-areas: "buy" "about" "schedule" "practical"; row-gap: 1rem; }
 }
 @media (max-height: 44rem) {
   .banner { height: 26vh; }
