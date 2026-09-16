@@ -53,6 +53,7 @@ function action(session, courseTitle, dateText, t) {
   const link = el('a', 'btn', t.book);
   if (session.stripeUrl) {
     link.href = session.stripeUrl;
+    link.target = '_blank';
   } else {
     const subject = t.subject(courseTitle, dateText.toLowerCase());
     const body = t.body(courseTitle, dateText.toLowerCase(), session.time);
