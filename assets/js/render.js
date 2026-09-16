@@ -10,7 +10,7 @@ const strings = {
     locale: 'sv-SE',
     book: 'Boka',
     full: 'Fullbokat',
-    price: (incl, ex) => [`${incl} inkl. moms.`, ` Företag: ${ex} exkl. moms mot faktura.`],
+    price: (incl, ex) => [`${incl} inkl. moms`, `, ${ex} exkl. moms för företag mot faktura`],
     subject: (course, date) => `Bokning: ${course} ${date}`,
     body: (course, date, time) => `Hej!\n\nJag vill boka en plats på ${course}, ${date} ${time}.\n\nNamn:\nTelefon:\n`,
     siteTitle: 'Kurser',
@@ -20,7 +20,7 @@ const strings = {
     locale: 'en-GB',
     book: 'Book',
     full: 'Fully booked',
-    price: (incl, ex) => [`${incl} incl. VAT.`, ` Companies: ${ex} excl. VAT by invoice.`],
+    price: (incl, ex) => [`${incl} incl. VAT`, `, ${ex} excl. VAT for companies by invoice`],
     subject: (course, date) => `Booking: ${course} ${date}`,
     body: (course, date, time) => `Hi!\n\nI would like to book a seat on ${course}, ${date} ${time}.\n\nName:\nPhone:\n`,
     siteTitle: 'Courses',
@@ -72,7 +72,7 @@ function render() {
   for (const node of document.querySelectorAll('[data-price]')) {
     const course = courses[node.dataset.price];
     const [main, note] = t.price(kr(course.price), kr(exVat(course.price)));
-    node.replaceChildren(main, el('span', 'price__vat', note));
+    node.replaceChildren(el('strong', null, main), note);
   }
 
   for (const list of document.querySelectorAll('[data-sessions]')) {

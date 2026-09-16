@@ -45,6 +45,8 @@ a { color: #000; text-underline-offset: 0.15em; }
 }
 .lang:hover { background: #000; color: #fff; }
 
+.panel__body::-webkit-scrollbar { display: none; }
+
 /* Shaped photos under the dates */
 .shape { margin: 1.5rem auto 0; width: min(100%, clamp(8rem, 24vh, 17rem)); }
 .shape svg, .shape img { display: block; width: 100%; height: auto; }
@@ -64,6 +66,7 @@ html:not(.js) .panel + .panel { border-top: 1px solid #000; }
 
 .panel__body {
   flex: 1; min-height: 0; overflow-y: auto; padding: var(--pad);
+  scrollbar-width: none;
   display: grid; align-content: start;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   grid-template-areas: "buy about" "buy practical";
@@ -82,10 +85,9 @@ h1 { margin: 0; font-size: 1em; font-weight: 600; }
 .facts div { display: contents; }
 .facts dt { font-weight: 500; }
 .facts dd { margin: 0; color: #444; }
-.price { margin: 1rem 0 0; font-weight: 500; }
-.price__vat { font-weight: 400; color: #444; }
+.facts dd strong { font-weight: 500; color: #000; }
 
-.sessions { list-style: none; margin: 0.75rem 0 0; padding: 0; border-top: 1px solid #000; }
+.sessions { list-style: none; margin: 1.25rem 0 0; padding: 0; border-top: 1px solid #000; }
 .session {
   display: flex; justify-content: space-between; align-items: center; gap: 1rem;
   padding: 0.55rem 0;
