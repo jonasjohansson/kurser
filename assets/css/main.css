@@ -39,10 +39,11 @@ a { color: #000; text-underline-offset: 0.15em; }
 .tab[aria-selected="true"] { color: #000; font-weight: 600; }
 .tab:hover { color: #000; }
 .lang {
-  flex: none; padding: 0.8rem var(--pad); border: 0; border-left: 1px solid #000; background: #fff;
-  font: inherit; font-weight: 500; color: #666; cursor: pointer;
+  position: fixed; top: 1rem; right: 1rem; z-index: 5;
+  padding: 0.45rem 0.8rem; border: 1px solid #000; background: #fff;
+  font: inherit; font-weight: 500; color: #000; cursor: pointer;
 }
-.lang:hover { color: #000; }
+.lang:hover { background: #000; color: #fff; }
 
 /* Shaped photos under the dates */
 .shape { margin: 1.5rem auto 0; width: min(100%, clamp(8rem, 24vh, 17rem)); }
@@ -62,9 +63,9 @@ html:not(.js) .panel + .panel { border-top: 1px solid #000; }
 .panel__body {
   flex: 1; min-height: 0; overflow-y: auto; padding: var(--pad);
   display: grid; align-content: start;
-  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 0.8fr);
-  grid-template-areas: "buy about practical";
-  column-gap: clamp(2rem, 4vw, 4rem);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-areas: "buy about" "buy practical";
+  column-gap: calc(2 * var(--pad)); row-gap: 0.75rem;
 }
 .buy { grid-area: buy; }
 .about { grid-area: about; }
@@ -99,9 +100,6 @@ h1 { margin: 0; font-size: 1em; font-weight: 600; }
 .btn--off:hover { background: #fff; color: #777; }
 
 
-@media (max-width: 68rem) {
-  .panel__body { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); grid-template-areas: "buy about" "buy practical"; row-gap: 0.75rem; }
-}
 @media (max-width: 44rem) {
   .banner { height: 24vh; }
   .panel__body { grid-template-columns: 1fr; grid-template-areas: "buy" "about" "practical"; row-gap: 1rem; }
