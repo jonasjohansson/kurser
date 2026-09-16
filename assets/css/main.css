@@ -45,11 +45,9 @@ a { color: #000; text-underline-offset: 0.15em; }
 .lang:hover { color: #000; }
 
 /* Shaped photos under the dates */
-.shape { margin: 1.5rem auto 0; width: min(100%, 15rem); }
+.shape { margin: 1.5rem auto 0; width: min(100%, clamp(8rem, 24vh, 17rem)); }
 .shape svg, .shape img { display: block; width: 100%; height: auto; }
-.shape--hattifnattar { width: min(100%, 17rem); }
-.shape--tufting { width: min(100%, 17rem); }
-@media (max-height: 46rem) { .shape { width: 10rem; } }
+
 
 /* Language: both versions are in the HTML; the root data-lang picks one. */
 html.js[data-lang="en"] [lang="sv"], html.js:not([data-lang="en"]) [lang="en"] { display: none; }
