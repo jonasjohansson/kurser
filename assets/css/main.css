@@ -59,12 +59,12 @@ html:not(.js) .panel + .panel { border-top: 1px solid #000; }
   scrollbar-width: none;
   display: grid; align-content: start;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  grid-template-areas: "about buy" "practical buy";
-  column-gap: calc(2 * var(--pad)); row-gap: 0.75rem;
+  grid-template-areas: "about buy" "about practical";
+  column-gap: calc(2 * var(--pad)); row-gap: 0; align-content: start;
 }
 .buy { grid-area: buy; }
 .about { grid-area: about; }
-.practical { grid-area: practical; }
+.practical { grid-area: practical; margin-top: 1rem; }
 .about p, .practical p { margin: 0 0 0.75rem; }
 .about p:last-child, .practical p:last-child { margin-bottom: 0; }
 
