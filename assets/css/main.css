@@ -51,9 +51,8 @@ html.js .panel:not(.is-active) { display: none; }
 html:not(.js) .panel + .panel { border-top: 1px solid #000; }
 
 .panel__body {
-  flex: 1; min-height: 0; overflow-y: auto; padding: var(--pad);
+  flex: 1; padding: var(--pad) var(--pad) calc(var(--pad) * 1.5);
   width: 100%; max-width: 68rem; margin: 0 auto;
-  scrollbar-width: none;
   display: grid; align-content: start;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   grid-template-areas: "about buy" "about practical";
