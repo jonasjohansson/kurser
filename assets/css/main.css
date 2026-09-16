@@ -67,7 +67,7 @@ html:not(.js) .panel + .panel { border-top: 1px solid #000; }
 }
 .buy { grid-area: buy; }
 .about { grid-area: about; }
-.practical { grid-area: practical; margin-top: 0.75rem; }
+.practical { grid-area: practical; margin-top: 0.75rem; font-size: 0.85em; color: #444; }
 .about p, .practical p { margin: 0 0 0.75rem; }
 .about p:last-child, .practical p:last-child { margin-bottom: 0; }
 
