@@ -45,7 +45,7 @@ a { color: #000; text-underline-offset: 0.15em; }
 .shape { margin: 0 0 1rem; width: 100%; }
 .shape svg, .shape img { display: block; width: 100%; height: auto; }
 .shape--tufting img { height: clamp(6rem, 30vh, 26rem); object-fit: cover; object-position: 50% 60%; }
-.shape--bastumossa img { width: auto; max-width: 100%; height: auto; max-height: clamp(8rem, 36vh, 30rem); }
+.shape--bastumossa img { width: auto; max-width: 100%; height: auto; max-height: clamp(8rem, 34vh, 30rem); }
 
 
 /* Panels */
@@ -64,8 +64,8 @@ html:not(.js) .panel + .panel { border-top: 1px solid #000; }
 }
 .buy { grid-area: buy; }
 .about { grid-area: about; }
-.schedule-block { grid-area: schedule; margin-top: 1rem; }
-.practical { grid-area: practical; margin-top: 1rem; }
+.schedule-block { grid-area: schedule; margin-top: 0.75rem; }
+.practical { grid-area: practical; margin-top: 0.75rem; }
 .about p, .practical p { margin: 0 0 0.75rem; }
 .about p:last-child, .practical p:last-child { margin-bottom: 0; }
 
