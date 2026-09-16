@@ -63,11 +63,12 @@ html:not(.js) .panel + .panel { border-top: 1px solid #000; }
   display: grid; align-content: start;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   grid-template-areas: "about buy" "about practical";
-  column-gap: calc(2 * var(--pad)); row-gap: 0; align-content: start;
+  grid-template-rows: auto minmax(0, 1fr);
+  column-gap: calc(2 * var(--pad)); row-gap: 0; align-content: stretch;
 }
 .buy { grid-area: buy; }
 .about { grid-area: about; }
-.practical { grid-area: practical; margin-top: 0.75rem; font-size: 0.85em; color: #444; }
+.practical { grid-area: practical; align-self: end; margin-top: 1rem; font-size: 0.85em; color: #444; }
 .about p, .practical p { margin: 0 0 0.75rem; }
 .about p:last-child, .practical p:last-child { margin-bottom: 0; }
 
@@ -92,6 +93,7 @@ h1 { margin: 0; font-size: 1em; font-weight: 600; }
 .session__date { font-weight: 500; }
 .session__time { color: #444; }
 .session--full .session__date { color: #777; }
+.session:last-child { border-bottom: 0; }
 
 .btn {
   display: inline-block; padding: 0.6rem 1.2rem;
