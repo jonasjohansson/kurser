@@ -29,7 +29,7 @@ a { color: #000; text-underline-offset: 0.15em; }
 
 /* Tabs */
 .tabs { display: flex; border-bottom: 1px solid #000; flex: none; }
-.tabs__list { display: flex; flex: 1; min-width: 0; }
+.tabs__list { display: flex; flex: 1; min-width: 0; max-width: 68rem; margin: 0 auto; }
 .tab {
   flex: 1; text-align: center; padding: 0.8rem var(--pad);
   text-decoration: none; font-weight: 500; color: #666;
@@ -56,6 +56,7 @@ html:not(.js) .panel + .panel { border-top: 1px solid #000; }
 
 .panel__body {
   flex: 1; min-height: 0; overflow-y: auto; padding: var(--pad);
+  width: 100%; max-width: 68rem; margin: 0 auto;
   scrollbar-width: none;
   display: grid; align-content: start;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
