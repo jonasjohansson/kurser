@@ -1,6 +1,5 @@
 :root {
   --font: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --rule-soft: #d9d9d9;
   --pad: clamp(1.25rem, 3vw, 2.5rem);
 }
 
@@ -84,7 +83,7 @@ h1 { margin: 0; font-size: 1em; font-weight: 600; }
 .session {
   display: flex; justify-content: space-between; align-items: center; gap: 1rem;
   padding: 0.55rem 0;
-  border-bottom: 1px solid var(--rule-soft);
+  border-bottom: 1px solid #000;
 }
 .session__when { display: flex; flex-wrap: wrap; column-gap: 0.6rem; align-items: baseline; }
 .session__date { font-weight: 500; }
@@ -97,7 +96,7 @@ h1 { margin: 0; font-size: 1em; font-weight: 600; }
   border: 1px solid #000;
 }
 .btn:hover { background: #fff; color: #000; }
-.btn--off { background: #fff; color: #777; border-color: var(--rule-soft); }
+.btn--off { background: #fff; color: #777; border-color: #000; }
 .btn--off:hover { background: #fff; color: #777; }
 
 
