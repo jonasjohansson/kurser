@@ -9,7 +9,7 @@ test('two courses with six spots each', () => {
     assert.ok(c.title && c.leader && c.hours > 0);
   }
   assert.equal(courses.tuftning.price, 2000);
-  assert.equal(courses.tovning.price, 3000);
+  assert.equal(courses.tovning.price, 2500);
 });
 
 test('four sessions with unique ids and valid fields', () => {
@@ -34,6 +34,6 @@ test('ex-moms prices are whole kronor', async () => {
   const { exVat, VAT } = await import('../assets/js/sessions.js');
   assert.equal(VAT, 0.25);
   assert.equal(exVat(2000), 1600);
-  assert.equal(exVat(3000), 2400);
+  assert.equal(exVat(2500), 2000);
   for (const c of Object.values(courses)) assert.equal(exVat(c.price) * (1 + VAT), c.price);
 });
