@@ -123,3 +123,14 @@ if (tabsHeader) {
   updateTabsHeight();
   new ResizeObserver(updateTabsHeight).observe(tabsHeader);
 }
+
+// Visible side-by-side workshops are sections rather than tab panels.
+const allCoursesLayout = window.matchMedia('(min-width: 160rem)');
+function updatePanelRoles() {
+  for (const panel of panels) {
+    panel.setAttribute('role', allCoursesLayout.matches ? 'region' : 'tabpanel');
+    panel.setAttribute('aria-labelledby', `${allCoursesLayout.matches ? 'heading' : 'tab'}-${panel.id}`);
+  }
+}
+allCoursesLayout.addEventListener('change', updatePanelRoles);
+updatePanelRoles();
