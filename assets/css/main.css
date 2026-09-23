@@ -119,9 +119,9 @@ h1 { margin: 0; font-size: 1em; font-weight: 600; }
   .banner { height: 26vh; }
 }
 
-/* Give the venue its own column when there is room for all three columns. */
+/* Keep the courses readable; let the venue fill the remaining screen width. */
 @media (min-width: 90rem) {
-  :root { --venue-width: clamp(22rem, 28vw, 32rem); }
+  :root { --venue-width: calc(100% - 68rem); }
   .banner {
     position: fixed; inset: 0 auto 0 0;
     width: var(--venue-width); height: 100dvh; min-height: 0;
