@@ -8,23 +8,23 @@ export const VAT = 0.25;
 export const courses = {
   tuftning: {
     title: 'Tuftning',
-    leader: 'Jonas Johansson',
+    leader: 'Jonas Johansson och Rose Hallgren',
     hours: 4,
     spots: 6,
-    price: 2000,
+    price: 1600,
   },
   tovning: {
     title: 'Tovning',
-    leader: 'Rose Hallgren',
+    leader: 'Rose Hallgren och Jonas Johansson',
     hours: 6,
     spots: 6,
-    price: 2500,
+    price: 2400,
   },
 };
 
 export const sessions = [
-  { id: 'tuft-2026-11-14', course: 'tuftning', date: '2026-11-14', time: '12–16', stripeUrl: 'https://buy.stripe.com/6oU7sE2rl10iaKPclC7Re00', soldOut: false },
-  { id: 'tov-2027-01-30', course: 'tovning', date: '2027-01-30', time: '12–18', stripeUrl: 'https://buy.stripe.com/cNicMY1nheR806b1GY7Re04', soldOut: false },
+  { id: 'tuft-2026-11-14', course: 'tuftning', date: '2026-11-14', time: '12–16', stripeUrl: 'https://buy.stripe.com/7sYdR28PJgZgaKPfxO7Re07', soldOut: false },
+  { id: 'tov-2027-01-30', course: 'tovning', date: '2027-01-30', time: '12–18', stripeUrl: 'https://buy.stripe.com/bJeaEQ6HB6kC4mr71i7Re06', soldOut: false },
 ];
 
 export function exVat(price) {
