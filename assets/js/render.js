@@ -103,3 +103,13 @@ for (const tab of tabs) {
     show();
   });
 }
+
+// Keep the booking panel below the sticky tabs, including when their text wraps.
+const tabsHeader = document.querySelector('.tabs');
+if (tabsHeader) {
+  const updateTabsHeight = () => {
+    document.documentElement.style.setProperty('--tabs-height', `${tabsHeader.getBoundingClientRect().height}px`);
+  };
+  updateTabsHeight();
+  new ResizeObserver(updateTabsHeight).observe(tabsHeader);
+}
