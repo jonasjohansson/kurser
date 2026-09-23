@@ -11,6 +11,16 @@ Without JavaScript both panels show stacked, in Swedish.
 
 Design: `docs/plans/2026-09-15-kurser-booking-site-design.md`.
 
+## Published dates
+
+Only Saturday 14 November 2026 (tufting) and Saturday 30 January 2027
+(Bastuhatt) are advertised and linked from the site. The second dates,
+15 November and 31 January, are reserved for later if there is interest.
+To add them, restore their session entries from Git history, update the tab
+labels, metadata, no-JavaScript fallback and date tests, and bump the script
+version. Existing Stripe products and Payment Links have not been deactivated
+by this site-only change.
+
 ## Files
 
 - `index.html` – the page (Swedish).

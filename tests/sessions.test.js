@@ -12,9 +12,9 @@ test('two courses with six spots each', () => {
   assert.equal(courses.tovning.price, 2500);
 });
 
-test('four sessions with unique ids and valid fields', () => {
-  assert.equal(sessions.length, 4);
-  assert.equal(new Set(sessions.map((s) => s.id)).size, 4);
+test('two sessions with unique ids and valid fields', () => {
+  assert.equal(sessions.length, 2);
+  assert.equal(new Set(sessions.map((s) => s.id)).size, 2);
   for (const s of sessions) {
     assert.ok(s.course in courses, `unknown course ${s.course}`);
     assert.match(s.date, /^\d{4}-\d{2}-\d{2}$/);
@@ -24,10 +24,10 @@ test('four sessions with unique ids and valid fields', () => {
   }
 });
 
-test('dates match the agreed weekends', () => {
+test('only the first day of each course is offered', () => {
   const byCourse = (c) => sessions.filter((s) => s.course === c).map((s) => s.date).sort();
-  assert.deepEqual(byCourse('tuftning'), ['2026-11-14', '2026-11-15']);
-  assert.deepEqual(byCourse('tovning'), ['2027-01-30', '2027-01-31']);
+  assert.deepEqual(byCourse('tuftning'), ['2026-11-14']);
+  assert.deepEqual(byCourse('tovning'), ['2027-01-30']);
 });
 
 test('ex-moms prices are whole kronor', async () => {
