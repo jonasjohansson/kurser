@@ -72,34 +72,44 @@ function render() {
   updateTitle();
 }
 
-// Tabs: the URL hash decides which panel is shown.
+// Real paths work on direct visits; old hash links remain supported.
 const panels = [...document.querySelectorAll('.panel')];
 const tabs = [...document.querySelectorAll('.tab')];
+const aliases = { bastumossa: 'bastuhatt', bastuhatt: 'bastuhatt', tuftning: 'tuftning' };
 
 function activeId() {
-  const id = location.hash.slice(1);
-  return panels.some((p) => p.id === id) ? id : panels[0].id;
+  return aliases[location.hash.slice(1)] ?? aliases[location.pathname.split('/').filter(Boolean)[0]] ?? 'tuftning';
 }
 
 function updateTitle() {
-  const key = activeId() === 'tuftning' ? 'tuftning' : 'tovning';
+  const id = activeId();
+  const key = id === 'tuftning' ? 'tuftning' : 'tovning';
   document.title = `${strings[lang].title[key]} · ${strings[lang].siteTitle}`;
+  const url = `https://kurser.jonasjohansson.se/${id}/`;
+  document.querySelector('link[rel="canonical"]').href = url;
+  document.querySelector('meta[property="og:url"]').content = url;
 }
 
 function show() {
   const target = activeId();
+  if (aliases[location.hash.slice(1)]) {
+    history.replaceState(null, '', `/${target}/${location.search}`);
+  }
   for (const p of panels) p.classList.toggle('is-active', p.id === target);
-  for (const tab of tabs) tab.setAttribute('aria-selected', String(tab.getAttribute('href') === `#${target}`));
+  for (const tab of tabs) tab.setAttribute('aria-selected', String(tab.getAttribute('href') === `/${target}/`));
   updateTitle();
 }
 
 render();
 show();
 window.addEventListener('hashchange', show);
+window.addEventListener('popstate', show);
 for (const tab of tabs) {
   tab.addEventListener('click', (e) => {
+    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     e.preventDefault();
-    history.replaceState(null, '', tab.getAttribute('href'));
+    const path = tab.getAttribute('href');
+    if (location.pathname !== path) history.pushState(null, '', path);
     show();
   });
 }

@@ -2,10 +2,11 @@
 
 Single-screen booking site for hands-on courses at Klättermusens Verkstad,
 Nytorgsgatan 36, Stockholm. Two tabs (Tuftning, Bastuhatt), no page scroll,
-black on white, Helvetica Neue, Swedish only. Static HTML, no build step. Booking and payment
+black on white, Helvetica Neue, Swedish only. Static HTML with generated course paths. Booking and payment
 happen on Stripe through one Payment Link per session; the site only links out.
 
-The tab is chosen by the URL hash: `/#tuftning` and `/#bastumossa` deep-link.
+Course URLs are `/tuftning/` and `/bastuhatt/`. Old `/#tuftning`, `/#bastumossa` and `/#bastuhatt` links still work and are updated to the corresponding path.
+Run `npm run build` to generate `_site/`, including both course directories. Deployment publishes that folder.
 Without JavaScript both panels show stacked, in Swedish.
 
 
