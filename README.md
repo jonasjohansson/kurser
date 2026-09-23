@@ -1,7 +1,7 @@
 # kurser.jonasjohansson.se
 
 Single-screen booking site for hands-on courses at Klättermusens Verkstad,
-Nytorgsgatan 36, Stockholm. Two tabs (Tuftning, Bastumössa), no page scroll,
+Nytorgsgatan 36, Stockholm. Two tabs (Tuftning, Bastuhatt), no page scroll,
 black on white, Helvetica Neue, Swedish only. Static HTML, no build step. Booking and payment
 happen on Stripe through one Payment Link per session; the site only links out.
 
@@ -17,7 +17,7 @@ Design: `docs/plans/2026-09-15-kurser-booking-site-design.md`.
 - `assets/js/sessions.js` – **the only file you edit day to day**: dates, times, prices, Stripe URLs, sold-out flags.
 - `assets/js/render.js` – renders prices and session rows from `sessions.js`, and switches tabs.
 - Asset links carry `?v=N` in `index.html`. Bump N whenever you change `sessions.js`, `render.js` or the CSS (the data file inherits the script's version), otherwise browsers keep the old file for up to ten minutes.
-- `assets/images/` – tufting photo (from Tufting Ex Machina, 800 and 1400 px) and the OG image. The Bastumössa tab has no photo yet; add one and copy the `<figure>` from the tufting panel.
+- `assets/images/` – tufting photo (from Tufting Ex Machina, 800 and 1400 px) and the OG image. The Bastuhatt tab has no photo yet; add one and copy the `<figure>` from the tufting panel.
 - `assets/css/main.css` – styles.
 - `tests/sessions.test.js` – checks `sessions.js` is consistent.
 

@@ -14,7 +14,7 @@ const strings = {
     subject: (course, date) => `Bokning: ${course} ${date}`,
     body: (course, date, time) => `Hej!\n\nJag vill boka en plats på ${course}, ${date} ${time}.\n\nNamn:\nTelefon:\n`,
     siteTitle: 'Kurser',
-    title: { tuftning: 'Tuftning', tovning: 'Bastumössa' },
+    title: { tuftning: 'Tuftning', tovning: 'Bastuhatt' },
   },
 };
 
