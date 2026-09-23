@@ -36,12 +36,20 @@ a { color: #000; text-underline-offset: 0.15em; }
 .tab[aria-selected="true"] { color: #000; font-weight: 600; }
 .tab:hover { color: #000; }
 
-/* Shaped photos under the dates */
-.shape { margin: 0.75rem 0 1rem; width: 100%; }
-.shape svg, .shape img { display: block; width: 100%; height: auto; }
-.shape--tufting img { width: 100%; height: auto; }
-.shape--bastumossa img { width: 100%; height: auto; }
-
+/* Course galleries: horizontal scrolling keeps the image area compact. */
+.gallery {
+  display: flex; gap: 0.75rem; overflow-x: auto; min-width: 0;
+  margin: 0.75rem 0 0.4rem; scroll-snap-type: x mandatory;
+  scrollbar-width: thin; scrollbar-color: #000 #eee;
+}
+.gallery img {
+  display: block; flex: 0 0 88%; width: 88%; height: auto;
+  min-width: 0; aspect-ratio: 1; object-fit: contain;
+  scroll-snap-align: start; background: #f7f7f7;
+}
+.about { min-width: 0; }
+.about .gallery__hint { font-size: 0.75rem; color: #555; margin-bottom: 0.4rem; }
+.about .gallery__source { font-size: 0.75rem; color: #555; margin-bottom: 1rem; }
 
 /* Panels */
 main { min-height: calc(100vh - 20vh - 3.5rem); display: flex; flex-direction: column; }
