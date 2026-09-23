@@ -19,7 +19,8 @@ body {
 a { color: #000; text-underline-offset: 0.15em; }
 :focus { outline: none; }
 :focus-visible { outline: 2px solid #000; outline-offset: 2px; }
-.tab:focus-visible, .btn:focus-visible { outline-offset: -4px; }
+.btn:focus-visible { outline-offset: -4px; }
+.tab:focus-visible { outline: none; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.25em; }
 
 /* Banner */
 .banner { margin: 0; flex: none; height: 20vh; min-height: 10rem; border-bottom: 1px solid #000; }
@@ -33,7 +34,7 @@ a { color: #000; text-underline-offset: 0.15em; }
   text-decoration: none; font-weight: 500; color: #666;
 }
 .tab__dates { font-weight: 400; margin-left: 0.35rem; }
-.tab + .tab { border-left: 1px solid #000; }
+.tabs::after { content: ""; position: absolute; top: 0; bottom: 0; left: 50%; width: 1px; background: #000; pointer-events: none; }
 .tab[aria-selected="true"] { color: #000; font-weight: 600; }
 .tab:hover { color: #000; }
 
@@ -56,8 +57,8 @@ html:not(.js) .panel + .panel { border-top: 1px solid #000; }
   width: 100%; max-width: 68rem; margin: 0 auto;
   display: grid; align-content: start;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  grid-template-areas: "about buy" "about practical";
-  grid-template-rows: minmax(0, 1fr) auto;
+  grid-template-areas: "about buy";
+  grid-template-rows: auto;
   column-gap: calc(2 * var(--pad)); row-gap: 0; align-content: stretch;
 }
 .buy {
@@ -67,7 +68,7 @@ html:not(.js) .panel + .panel { border-top: 1px solid #000; }
   overflow-y: auto;
 }
 .about { grid-area: about; }
-.practical { grid-area: practical; align-self: end; margin-top: 2rem; font-size: 0.85em; color: #444; }
+.practical { margin-top: 2rem; font-size: 0.85em; color: #444; }
 .about p, .practical p { margin: 0 0 0.75rem; }
 .about p:last-child, .practical p:last-child { margin-bottom: 0; }
 
@@ -108,7 +109,7 @@ h1 { margin: 0; font-size: 1em; font-weight: 600; }
   .banner { height: 24vh; }
   .buy { position: static; max-height: none; overflow: visible; }
   .panel::before { display: none; }
-  .panel__body { grid-template-columns: 1fr; grid-template-areas: "buy" "about" "practical"; grid-template-rows: auto auto auto; row-gap: 1rem; }
+  .panel__body { grid-template-columns: 1fr; grid-template-areas: "buy" "about"; grid-template-rows: auto auto; row-gap: 1rem; }
 }
 @media (max-height: 44rem) {
   .banner { height: 26vh; }
