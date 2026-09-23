@@ -8,8 +8,8 @@
 html { -webkit-text-size-adjust: 100%; }
 
 /* Keep scrolling available without visible scrollbars. */
-html, .buy { scrollbar-width: none; }
-html::-webkit-scrollbar, .buy::-webkit-scrollbar { display: none; }
+html, .buy, .panel { scrollbar-width: none; }
+html::-webkit-scrollbar, .buy::-webkit-scrollbar, .panel::-webkit-scrollbar { display: none; }
 
 body {
   margin: 0;
@@ -140,7 +140,15 @@ h1 { margin: 0; font-size: 1em; font-weight: 600; }
   main { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); min-height: 100dvh; }
   .panel, html.js .panel:not(.is-active) { display: flex; flex-direction: column; min-width: 0; }
   .panel + .panel { border-left: 1px solid #000; }
-  .panel::before { top: 3rem; }
+  main { height: 100dvh; min-height: 0; }
+  .panel, html.js .panel:not(.is-active) {
+    height: 100dvh; min-height: 0; overflow-y: auto; overscroll-behavior-y: contain;
+  }
+  .panel::before { display: none; }
+  .panel__body {
+    flex: 1 0 auto;
+    background: linear-gradient(to right, transparent 50%, #000 50%, #000 calc(50% + 1px), transparent calc(50% + 1px));
+  }
   .course-heading {
     display: flex; align-items: center; justify-content: center;
     position: sticky; top: 0; z-index: 2; height: 3rem; flex: none;

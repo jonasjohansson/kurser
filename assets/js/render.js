@@ -129,6 +129,8 @@ const allCoursesLayout = window.matchMedia('(min-width: 160rem)');
 function updatePanelRoles() {
   for (const panel of panels) {
     panel.setAttribute('role', allCoursesLayout.matches ? 'region' : 'tabpanel');
+    if (allCoursesLayout.matches) panel.setAttribute('tabindex', '0');
+    else panel.removeAttribute('tabindex');
     panel.setAttribute('aria-labelledby', `${allCoursesLayout.matches ? 'heading' : 'tab'}-${panel.id}`);
   }
 }
