@@ -7,6 +7,10 @@
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
 
+/* Keep scrolling available without visible scrollbars. */
+html, .buy { scrollbar-width: none; }
+html::-webkit-scrollbar, .buy::-webkit-scrollbar { display: none; }
+
 body {
   margin: 0;
   background: #fff;
@@ -24,7 +28,7 @@ a { color: #000; text-underline-offset: 0.15em; }
 
 /* Banner */
 .banner { margin: 0; flex: none; height: 20vh; min-height: 10rem; border-bottom: 1px solid #000; }
-.banner img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 58%; }
+.banner img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 66%; }
 
 /* Tabs */
 .tabs { display: flex; border-bottom: 1px solid #000; position: sticky; top: 0; background: #fff; z-index: 2; }
