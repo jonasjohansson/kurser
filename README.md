@@ -123,15 +123,12 @@ payout by hand from the Stripe payout report:
 
 Rose invoices the AB for her two days after the felting weekend.
 
-## Optional later
-
-A scheduled GitHub Action could ask Stripe how many payments each link has and
-flip `soldOut` automatically. Not built; four sessions do not need it.
-
 ## Automatic availability
 
-The Pages workflow reads Stripe every 15 minutes (GitHub may delay scheduled runs)
-and on each deployment. It publishes only anonymous totals in
+The Pages workflow reads Stripe on each deployment: every push to `main`, or a
+manual run after a booking (`gh workflow run deploy.yml --repo jonasjohansson/kurser`).
+There is no timer, so the count on the site is only as fresh as the last deployment;
+Stripe's own cap still stops a full course from selling. It publishes only anonymous totals in
 `assets/availability.json`; no customer information or API keys reach the site.
 The Stripe key is a GitHub Actions secret and is used only by the refresh step.
 If Stripe fails, deployment stops and the previous site stays available.
