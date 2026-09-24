@@ -90,9 +90,19 @@ Skip Klarna: it costs more and is not needed for 1 600–2 400 kr.
 - **A session sells out.** Stripe closes the link after six payments. Set
   `soldOut: true` for that session in `sessions.js`, commit, push. The button
   turns into "Fullbokat" so nobody lands on a dead Stripe page.
-- **Refund.** Stripe Dashboard → Payments → refund. Full refund until seven days
-  before, per the policy on the site. A refund does not reopen the spot on the
-  link by itself; if you want to resell it, raise the link's limit by one.
+- **Refund.** Stripe Dashboard → Payments → refund. For new bookings made after
+  the 2026-09-24 cancellation-policy deployment, cancellations at least seven
+  days before the course receive the course fee less the actual payment fee
+  Stripe retains. Use the fee from that payment, not an estimated percentage.
+  Later cancellations can transfer the place. The policy is also displayed
+  beside the payment button in both active Stripe checkouts.
+  Existing bookings retain the previous full-refund promise; use the successful
+  deployment time of the policy-change commit as the cutoff. If a customer saw
+  the previous terms (including an already-open checkout), honour those terms.
+  Mandatory consumer rights take precedence; do not deduct this fee when a full
+  refund is legally required or when we cancel the course.
+  A refund does not reopen the spot on the link by itself; if you want to resell
+  it, raise the link's limit by one.
 - **Participant list.** Payment Links → the link → Payments. Export to CSV for
   names, emails, phone numbers and the custom field.
 
