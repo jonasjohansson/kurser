@@ -35,7 +35,7 @@ for row in "${SESSIONS[@]}"; do
     --data-urlencode "line_items[0][adjustable_quantity][enabled]=false" \
     --data-urlencode "restrictions[completed_sessions][limit]=6" \
     --data-urlencode "inactive_message=Det här tillfället är fullbokat. Mejla $CONTACT för väntelista." \
-    --data-urlencode "custom_text[submit][message]=Vid avbokning senast sju dagar före kursstart återbetalas kursavgiften med avdrag för den faktiska betalningsavgift som Stripe inte återbetalar. Därefter kan platsen överlåtas." \
+    --data-urlencode "custom_text[submit][message]=Vid avbokning senast sju dagar före kursstart återbetalas kursavgiften med avdrag för den faktiska betalningsavgift som Stripe inte återbetalar. Därefter kan platsen överlåtas. Vid för få anmälningar kan kursen ställas in. Då meddelas alla anmälda och hela kursavgiften återbetalas, utan avdrag för betalningsavgifter." \
     --data-urlencode "phone_number_collection[enabled]=true" \
     --data-urlencode "custom_fields[0][key]=notering" --data-urlencode "custom_fields[0][label][type]=custom" \
     --data-urlencode "custom_fields[0][label][custom]=Något vi bör veta?" --data-urlencode "custom_fields[0][type]=text" --data-urlencode "custom_fields[0][optional]=true" \

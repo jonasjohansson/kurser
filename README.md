@@ -101,6 +101,8 @@ Skip Klarna: it costs more and is not needed for 1 600–2 400 kr.
   the previous terms (including an already-open checkout), honour those terms.
   Mandatory consumer rights take precedence; do not deduct this fee when a full
   refund is legally required or when we cancel the course.
+  We may cancel a course if too few people sign up. Notify every participant
+  and refund the full course fee without deducting payment fees.
   A refund does not reopen the spot on the link by itself; if you want to resell
   it, raise the link's limit by one.
 - **Participant list.** Payment Links → the link → Payments. Export to CSV for
