@@ -127,3 +127,24 @@ Rose invoices the AB for her two days after the felting weekend.
 
 A scheduled GitHub Action could ask Stripe how many payments each link has and
 flip `soldOut` automatically. Not built; four sessions do not need it.
+
+## Automatic availability
+
+The Pages workflow reads Stripe every 15 minutes (GitHub may delay scheduled runs)
+and on each deployment. It publishes only anonymous totals in
+`assets/availability.json`; no customer information or API keys reach the site.
+The Stripe key is a GitHub Actions secret and is used only by the refresh step.
+If Stripe fails, deployment stops and the previous site stays available.
+
+`scripts/booking-capacity.json` tracks invoice reservations separately from Stripe.
+Tufting currently has one invoice reservation, so its active Stripe link is capped
+at five completed checkouts, leaving four after the first Stripe booking.
+When adding or cancelling an invoice reservation, update this file AND the Stripe
+link limit to keep the combined capacity at six. Do not remove a reservation when
+its invoice is paid; it still occupies a seat. No invoice identities belong here.
+
+Counts include completed checkouts on current and previous links. A refund does
+not itself cancel a seat or decrement Stripe's completed-session count: after a
+confirmed cancellation, increment `releasedStripeBookings` and adjust/reopen the
+Stripe link as appropriate. Never release a place merely for a partial refund.
+Local builds use the last saved availability snapshot; production refreshes it.

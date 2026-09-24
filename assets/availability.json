@@ -1,0 +1,12 @@
+{
+  "tuft-2026-11-14": {
+    "capacity": 6,
+    "booked": 2,
+    "remaining": 4
+  },
+  "tov-2027-01-30": {
+    "capacity": 6,
+    "booked": 0,
+    "remaining": 6
+  }
+}

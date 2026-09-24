@@ -1,0 +1,18 @@
+{
+  "tuft-2026-11-14": {
+    "invoiceReservations": 1,
+    "releasedStripeBookings": 0,
+    "paymentLinks": [
+      "plink_1UIobZ3qkB87XUnIVvSr6D9J",
+      "plink_1UGE3v3qkB87XUnIwzZUCUHH"
+    ]
+  },
+  "tov-2027-01-30": {
+    "invoiceReservations": 0,
+    "releasedStripeBookings": 0,
+    "paymentLinks": [
+      "plink_1UIobY3qkB87XUnI5HLPCbHK",
+      "plink_1UGH333qkB87XUnIcqjf3Z4R"
+    ]
+  }
+}

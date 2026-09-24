@@ -3,6 +3,8 @@
 const version = new URL(import.meta.url).searchParams.get('v') ?? '0';
 const { courses, sessions, exVat } = await import(`./sessions.js?v=${version}`);
 
+let availability = {};
+
 const CONTACT = 'j@jonasjohansson.se';
 
 const strings = {
@@ -31,7 +33,7 @@ function el(tag, className, text) {
 const lang = 'sv';
 
 function action(session, courseTitle, dateText, t) {
-  if (session.soldOut) return el('span', 'btn btn--off', t.full);
+  if (session.soldOut || availability[session.id]?.remaining === 0) return el('span', 'btn btn--off', t.full);
   const link = el('a', 'btn', t.book);
   if (session.stripeUrl) {
     link.href = session.stripeUrl;
@@ -53,6 +55,11 @@ function render() {
     const course = courses[node.dataset.price];
     const [main, note] = t.price(kr(course.price), kr(exVat(course.price)));
     node.replaceChildren(el('strong', null, main), note);
+  }
+
+  for (const node of document.querySelectorAll('[data-availability]')) {
+    const state = availability[node.dataset.availability];
+    if (state) node.textContent = `${state.booked} av ${state.capacity} platser bokade · ${state.remaining} kvar`;
   }
 
   for (const list of document.querySelectorAll('[data-sessions]')) {
@@ -136,3 +143,17 @@ function updatePanelRoles() {
 }
 allCoursesLayout.addEventListener('change', updatePanelRoles);
 updatePanelRoles();
+
+// Read anonymous totals without relying on a cached JavaScript module.
+fetch('/assets/availability.json', { cache: 'no-store' })
+  .then(response => { if (!response.ok) throw new Error('Availability unavailable'); return response.json(); })
+  .then(data => {
+    for (const session of sessions) {
+      const state = data[session.id];
+      if (!state || ![state.booked, state.remaining, state.capacity].every(n => Number.isInteger(n) && n >= 0)) throw new Error('Invalid availability');
+      if (state.capacity !== courses[session.course].spots || state.remaining !== Math.max(0, state.capacity - state.booked)) throw new Error('Inconsistent availability');
+    }
+    availability = data;
+    render();
+  })
+  .catch(() => { /* Keep the last generated HTML count and Stripe's checkout limit. */ });
