@@ -52,7 +52,7 @@ npm run serve       # http://localhost:8080
 ## Stripe setup (one time, about 30 minutes)
 
 Stripe has no monthly fee. Swedish cards cost about 1.5 % + 1.8 kr per payment.
-Skip Klarna: it costs more and is not needed for 1 600–2 000 kr.
+Skip Klarna: it costs more and is not needed for 1 600 kr.
 
 1. **Account.** Sign up at stripe.com as the AB. You need the org number, a
    company bank account (IBAN), and ID for the signatory. Activation usually
@@ -63,8 +63,8 @@ Skip Klarna: it costs more and is not needed for 1 600–2 000 kr.
 3. **Products.** Product catalogue → Add product, four times:
    - `Tuftning, lördag 14 november 2026` – 1 600 kr, one-time, **tax inclusive**, 25 % moms.
    - `Tuftning, söndag 15 november 2026` – 1 600 kr.
-   - `Tovning, lördag 30 januari 2027` – 2 000 kr.
-   - `Tovning, söndag 31 januari 2027` – 2 000 kr.
+   - `Tovning, lördag 30 januari 2027` – 1 600 kr.
+   - `Tovning, söndag 31 januari 2027` – 1 600 kr.
    Put the start time and the address in each product description; it shows on
    the checkout page and receipt. The site shows the price both incl. and excl.
    moms; Stripe charges the incl. price. Companies that want an invoice email

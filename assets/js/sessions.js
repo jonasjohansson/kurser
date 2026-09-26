@@ -18,13 +18,13 @@ export const courses = {
     leader: 'Rose Hallgren och Jonas Johansson',
     hours: 6,
     spots: 6,
-    price: 2000,
+    price: 1600,
   },
 };
 
 export const sessions = [
   { id: 'tuft-2026-11-14', course: 'tuftning', date: '2026-11-14', time: '12–16', stripeUrl: 'https://buy.stripe.com/7sYdR28PJgZgaKPfxO7Re07', soldOut: false },
-  { id: 'tov-2027-01-30', course: 'tovning', date: '2027-01-30', time: '12–18', stripeUrl: 'https://buy.stripe.com/fZu00cd5Z6kC06b5Xe7Re08', soldOut: false },
+  { id: 'tov-2027-01-30', course: 'tovning', date: '2027-01-30', time: '12–18', stripeUrl: 'https://buy.stripe.com/4gM4gs2rlaAS6uz99q7Re09', soldOut: false },
 ];
 
 export function exVat(price) {

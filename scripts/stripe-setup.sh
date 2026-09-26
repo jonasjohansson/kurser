@@ -17,8 +17,8 @@ field() { python3 -c 'import json,sys; d=json.load(sys.stdin); print(d.get(sys.a
 SESSIONS=(
   "tuft-2026-11-14|Tuftning|lördag 14 november 2026|12–16|1600|Tack för din bokning! Vi ses lördag 14 november kl 12 hos Klättermusens Verkstad, Nytorgsgatan 36. Ta gärna med ett motiv. Det du tuftat torkar över natten och hämtas i verkstaden söndag 15 november. Frågor: $CONTACT"
   "tuft-2026-11-15|Tuftning|söndag 15 november 2026|12–16|1600|Tack för din bokning! Vi ses söndag 15 november kl 12 hos Klättermusens Verkstad, Nytorgsgatan 36. Ta gärna med ett motiv. Det du tuftat torkar över natten och hämtas i verkstaden måndag 16 november. Frågor: $CONTACT"
-  "tov-2027-01-30|Bastuhatt|lördag 30 januari 2027|12–18|2000|Tack för din bokning! Vi ses lördag 30 januari kl 12 hos Klättermusens Verkstad, Nytorgsgatan 36. Fundera på vilken färg du vill ha och kom i kläder som tål vatten och tvål. Frågor: $CONTACT"
-  "tov-2027-01-31|Bastuhatt|söndag 31 januari 2027|12–18|2000|Tack för din bokning! Vi ses söndag 31 januari kl 12 hos Klättermusens Verkstad, Nytorgsgatan 36. Fundera på vilken färg du vill ha och kom i kläder som tål vatten och tvål. Frågor: $CONTACT"
+  "tov-2027-01-30|Bastuhatt|lördag 30 januari 2027|12–18|1600|Tack för din bokning! Vi ses lördag 30 januari kl 12 hos Klättermusens Verkstad, Nytorgsgatan 36. Fundera på vilken färg du vill ha och kom i kläder som tål vatten och tvål. Frågor: $CONTACT"
+  "tov-2027-01-31|Bastuhatt|söndag 31 januari 2027|12–18|1600|Tack för din bokning! Vi ses söndag 31 januari kl 12 hos Klättermusens Verkstad, Nytorgsgatan 36. Fundera på vilken färg du vill ha och kom i kläder som tål vatten och tvål. Frågor: $CONTACT"
 )
 
 echo "{" > "$OUT"
