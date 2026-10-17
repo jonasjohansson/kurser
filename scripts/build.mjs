@@ -1,5 +1,6 @@
 import { cp, mkdir, readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
+import { availabilityText } from '../assets/js/sessions.js';
 const root = new URL('../', import.meta.url);
 const out = new URL('_site/', root);
 await mkdir(out, { recursive: true });
@@ -9,7 +10,7 @@ let html = await readFile(new URL('index.html', root), 'utf8');
 const availability = JSON.parse(await readFile(new URL('assets/availability.json', root), 'utf8'));
 html = html.replace(/(<dd data-availability="([^"]+)">)[^<]*(<\/dd>)/g, (_, start, id, end) => {
   const state = availability[id];
-  return `${start}${state.booked} av ${state.capacity} platser bokade · ${state.remaining} kvar${end}`;
+  return `${start}${availabilityText(state)}${end}`;
 });
 await writeFile(new URL('index.html', out), html);
 for (const [slug, title] of [['tuftning', 'Tuftning'], ['bastuhatt', 'Bastuhatt']]) {

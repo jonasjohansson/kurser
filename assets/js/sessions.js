@@ -30,3 +30,9 @@ export const sessions = [
 export function exVat(price) {
   return Math.round(price / (1 + VAT));
 }
+
+// One wording for the seat count, used by the build and in the browser.
+export function availabilityText({ booked, capacity, remaining }) {
+  const tail = remaining === 0 ? 'Fullbokat' : `${remaining} kvar`;
+  return `${booked} av ${capacity} platser bokade · ${tail}`;
+}
