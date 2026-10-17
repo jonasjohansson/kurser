@@ -85,7 +85,7 @@ const tabs = [...document.querySelectorAll('.tab')];
 const aliases = { bastumossa: 'bastuhatt', bastuhatt: 'bastuhatt', tuftning: 'tuftning' };
 
 function activeId() {
-  return aliases[location.hash.slice(1)] ?? aliases[location.pathname.split('/').filter(Boolean)[0]] ?? 'tuftning';
+  return aliases[location.hash.slice(1)] ?? aliases[location.pathname.split('/').filter(Boolean)[0]] ?? 'bastuhatt';
 }
 
 function updateTitle() {

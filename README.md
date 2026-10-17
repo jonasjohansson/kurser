@@ -1,7 +1,7 @@
 # kurser.jonasjohansson.se
 
 Single-screen booking site for hands-on courses at Klättermusens Verkstad,
-Nytorgsgatan 36, Stockholm. Two tabs (Tuftning, Bastuhatt), no page scroll,
+Nytorgsgatan 36, Stockholm. Two tabs (Bastuhatt, Tuftning; the open course goes first and is the default), no page scroll,
 black on white, Helvetica Neue, Swedish only. Static HTML with generated course paths. Booking and payment
 happen on Stripe through one Payment Link per session; the site only links out.
 
