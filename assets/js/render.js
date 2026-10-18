@@ -1,7 +1,7 @@
 // sessions.js is loaded with the same ?v= as this file, so bumping the version
 // in index.html refreshes both.
 const version = new URL(import.meta.url).searchParams.get('v') ?? '0';
-const { courses, sessions, exVat, availabilityText } = await import(`./sessions.js?v=${version}`);
+const { courses, sessions, exVat, availabilityText, isFull, courseFullText } = await import(`./sessions.js?v=${version}`);
 
 let availability = {};
 
@@ -33,7 +33,7 @@ function el(tag, className, text) {
 const lang = 'sv';
 
 function action(session, courseTitle, dateText, t) {
-  if (session.soldOut || availability[session.id]?.remaining === 0) return el('span', 'btn btn--off', t.full);
+  if (isFull(session, availability)) return el('span', 'btn btn--off', t.full);
   const link = el('a', 'btn', t.book);
   if (session.stripeUrl) {
     link.href = session.stripeUrl;
@@ -60,6 +60,10 @@ function render() {
   for (const node of document.querySelectorAll('[data-availability]')) {
     const state = availability[node.dataset.availability];
     if (state) node.textContent = availabilityText(state);
+  }
+
+  for (const node of document.querySelectorAll('[data-full]')) {
+    node.textContent = courseFullText(node.dataset.full, availability);
   }
 
   for (const list of document.querySelectorAll('[data-sessions]')) {

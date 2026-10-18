@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { bookingAvailability } from '../scripts/sync-availability.mjs';
-import { availabilityText } from '../assets/js/sessions.js';
+import { availabilityText, courseFullText } from '../assets/js/sessions.js';
 test('includes invoice reservations and previous payment links', () => {
   assert.deepEqual(bookingAvailability(6, [1, 0], 1), { capacity: 6, booked: 2, remaining: 4 });
   assert.equal(bookingAvailability(6, [2, 1], 1).remaining, 2);
@@ -18,4 +18,10 @@ test('invalid or absent Stripe counts fail rather than publish false availabilit
 test('seat text says Fullbokat instead of 0 kvar', () => {
   assert.equal(availabilityText({ booked: 2, capacity: 6, remaining: 4 }), '2 av 6 platser bokade · 4 kvar');
   assert.equal(availabilityText({ booked: 6, capacity: 6, remaining: 0 }), '6 av 6 platser bokade · Fullbokat');
+});
+test('a course tab says (fullbokat) only when every session is full', () => {
+  const full = { 'tuft-2026-11-14': { booked: 6, capacity: 6, remaining: 0 } };
+  assert.equal(courseFullText('tuftning', full), '(fullbokat)');
+  assert.equal(courseFullText('tuftning', {}), '');
+  assert.equal(courseFullText('tovning', full), '');
 });

@@ -36,3 +36,14 @@ export function availabilityText({ booked, capacity, remaining }) {
   const tail = remaining === 0 ? 'Fullbokat' : `${remaining} kvar`;
   return `${booked} av ${capacity} platser bokade · ${tail}`;
 }
+
+// A session is full when marked soldOut by hand or when Stripe reports no places left.
+export function isFull(session, availability) {
+  return session.soldOut || availability[session.id]?.remaining === 0;
+}
+
+// A course is full when every one of its sessions is; shown as "(fullbokat)" in its tab.
+export function courseFullText(courseId, availability) {
+  const own = sessions.filter(s => s.course === courseId);
+  return own.length > 0 && own.every(s => isFull(s, availability)) ? '(fullbokat)' : '';
+}

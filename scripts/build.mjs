@@ -1,6 +1,6 @@
 import { cp, mkdir, readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
-import { availabilityText } from '../assets/js/sessions.js';
+import { availabilityText, courseFullText } from '../assets/js/sessions.js';
 const root = new URL('../', import.meta.url);
 const out = new URL('_site/', root);
 await mkdir(out, { recursive: true });
@@ -12,6 +12,8 @@ html = html.replace(/(<dd data-availability="([^"]+)">)[^<]*(<\/dd>)/g, (_, star
   const state = availability[id];
   return `${start}${availabilityText(state)}${end}`;
 });
+html = html.replace(/(<span class="tab__full" data-full="([^"]+)">)[^<]*(<\/span>)/g,
+  (_, start, id, end) => `${start}${courseFullText(id, availability)}${end}`);
 await writeFile(new URL('index.html', out), html);
 for (const [slug, title] of [['tuftning', 'Tuftning'], ['bastuhatt', 'Bastuhatt']]) {
   let page = html.replace(/<title>.*?<\/title>/, `<title>${title} · Kurser</title>`)

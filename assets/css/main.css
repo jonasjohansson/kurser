@@ -38,6 +38,8 @@ a { color: #000; text-underline-offset: 0.15em; }
   text-decoration: none; font-weight: 500; color: #666;
 }
 .tab__dates { font-weight: 400; margin-left: 0.35rem; }
+.tab__full { font-weight: 400; }
+.tab__full:empty { display: none; }
 .tabs::after { content: ""; position: absolute; top: 0; bottom: 0; left: 50%; width: 1px; background: #000; pointer-events: none; }
 .tab[aria-selected="true"] { color: #000; font-weight: 600; }
 .tab:hover { color: #000; }
